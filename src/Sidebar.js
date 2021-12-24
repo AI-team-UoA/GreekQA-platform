@@ -32,8 +32,8 @@ export default function Sidebar() {
                       <NavLink to="/dashboard/articles"
                         className={({ isActive }) =>
                           [
-                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white rounded-lg transition duration-200 ease-in-out transform",
-                            isActive ? 'shadow-outline border-aqua-800 bg-aqua-800' : 'hover:border-aqua-800 hover:bg-aqua-600'
+                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white rounded-lg transition duration-200 ease-in-out transform active:bg-aqua-750",
+                            isActive ? 'shadow-outline border-aqua-800 bg-aqua-800' : 'hover:border-aqua-800 hover:bg-aqua-600',
                           ].join(" ")
                         }
                       >
@@ -45,127 +45,31 @@ export default function Sidebar() {
                     </li>
                     <li>
                       <NavLink to="/dashboard/guidelines"
-                        className="
-                          inline-flex
-                          items-center
-                          w-full
-                          px-4
-                          py-2
-                          mt-1
-                          text-base text-white
-                          transition
-                          duration-300
-                          ease-in-out
-                          transform
-                          border-aqua-800
-                          rounded-lg
-                          hover:border-4-aqua-800
-                          focus:shadow-outline
-                          hover:bg-aqua-600
-                      ">
+                        className={({ isActive }) =>
+                          [
+                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white rounded-lg transition duration-200 ease-in-out transform active:bg-aqua-750",
+                            isActive ? 'shadow-outline border-aqua-800 bg-aqua-800' : 'hover:border-aqua-800 hover:bg-aqua-600'
+                          ].join(" ")
+                        }
+                      >
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         <span className="ml-4">Οδηγίες Χρήσης</span>
                       </NavLink>
                     </li>
-                    {/* <li>
-                      <a className="
-                        inline-flex
-                        items-center
-                        w-full
-                        px-4
-                        py-2
-                        mt-1
-                        text-base text-white
-                        transition
-                        duration-300
-                        ease-in-out
-                        transform
-                        border-aqua-800
-                        rounded-lg
-                        hover:border-aqua-800
-                        focus:shadow-outline
-                        hover:bg-aqua-600
-                      " href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                        <span className="ml-4">User</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a className="
-                        inline-flex
-                        items-center
-                        w-full
-                        px-4
-                        py-2
-                        mt-1
-                        text-base text-white
-                        transition
-                        duration-500
-                        ease-in-out
-                        transform
-                        border-aqua-800
-                        rounded-lg
-                        hover:border-aqua-800
-                        focus:shadow-outline
-                        hover:bg-aqua-600
-                      " href="#"><svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <span className="ml-4">Settings</span></a>
-                    </li> */}
                   </ul>
                   <p className="px-4 pt-4 font-medium text-white uppercase select-none">ΔΙΑΧΕΙΡΙΣΤΗΣ</p>
                   <ul>
-                    {/* <li>
-                      <a className="
-                        inline-flex
-                        items-center
-                        w-full
-                        px-4
-                        py-2
-                        mt-1
-                        text-base text-white
-                        transition
-                        duration-500
-                        ease-in-out
-                        transform
-                        border-aqua-800
-                        rounded-lg
-                        hover:border-aqua-800
-                        focus:shadow-outline
-                        hover:bg-aqua-600
-                      ">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                        </svg>
-                        <span className="ml-4"> Tasks</span>
-                      </a>
-                    </li> */}
                     <li>
                       <NavLink to="/dashboard/statistics" 
-                        className="
-                          inline-flex
-                          items-center
-                          w-full
-                          px-4
-                          py-2
-                          mt-1
-                          text-base text-white
-                          transition
-                          duration-300
-                          ease-in-out
-                          transform
-                          border-aqua-800
-                          rounded-lg
-                          hover:border-aqua-800
-                          focus:shadow-outline
-                          hover:bg-aqua-600
-                      ">
+                        className={({ isActive }) =>
+                          [
+                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base text-white rounded-lg transition duration-200 ease-in-out transform active:bg-aqua-750",
+                            isActive ? 'shadow-outline border-aqua-800 bg-aqua-800' : 'hover:border-aqua-800 hover:bg-aqua-600'
+                          ].join(" ")
+                        }
+                      >
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
@@ -176,19 +80,14 @@ export default function Sidebar() {
                   </ul>
                 </nav>
               </div>
-              <NavLink to="/account/profile" 
-                className="
-                  flex flex-shrink-0 p-4 px-4 bg-aqua-600
-                  transition
-                  duration-300
-                  ease-in-out
-                  transform
-                  border-aqua-800
-                  hover:rounded-lg
-                  hover:border-aqua-800
-                  focus:shadow-outline
-                  hover:bg-aqua-800
-              ">
+              <NavLink to="/account/profile"
+                className={({ isActive }) =>
+                  [
+                    "flex flex-shrink-0 p-4 px-4 bg-aqua-600 transition duration-300 ease-in-out border-aqua-800 active:bg-aqua-750",
+                    isActive ? "bg-aqua-800" : "hover:bg-aqua-800"
+                  ].join(" ")
+                }
+              >
                 <div href="profile" className="flex-shrink-0 block w-full group">
                   <div className="flex items-center">
                       {/* <img className="inline-block rounded-full h-6 w-6" src={userImage} /> */}
@@ -207,7 +106,7 @@ export default function Sidebar() {
   }
   // <div className="flex h-screen overflow-hidden">
   //           <div className="flex flex-col flex-1 w-0 overflow-hidden">
-  //         <main className="relative flex-1 overflow-y-auto focus:outline-none">
+  //         <main className="relative flex-1 overflow-y-auto">
   //           <div className="py-6">
   //             <div className="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
   //               <h1 className="text-lg text-neutral-600">Here is where you put your stuff</h1>
@@ -221,3 +120,20 @@ export default function Sidebar() {
   //         </main>
   //       </div>
   //     </div>
+
+  // className="
+  // inline-flex
+  // items-center
+  // w-full
+  // px-4
+  // py-2
+  // mt-1
+  // text-base text-white
+  // transition
+  // duration-300
+  // ease-in-out
+  // transform
+  // border-aqua-800
+  // rounded-lg
+  // hover:border-4-aqua-800
+  // hover:bg-aqua-600"

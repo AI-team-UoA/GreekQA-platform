@@ -15,6 +15,7 @@ module.exports = {
           '550': '#99D1D6',
           '600': '#85C8CE',
           '700': '#5DB6BE',
+          '750': '#4FA8B0',
           '800': '#419AA2',
           '900': '#31747A'
         }
@@ -22,7 +23,7 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {backgroundColor: ['active']},
   },
   plugins: [
     require('@tailwindcss/forms')
