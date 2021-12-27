@@ -8,7 +8,7 @@ export default function NotFound() {
                 <NotFoundSvg />
             </div>
             <div className="mx-auto pt-20 text-3xl font-bold text-gray-600 text-center">Η σελίδα δεν βρέθηκε.</div>
-            <Link to="/" className="mx-auto pt-2 text-lg text-aqua-800 hover:underline text-center">Επιστροφή στην αρχική σελίδα.</Link>
+            <Link to="/" className="mx-auto pt-2 text-lg font-medium text-aqua-800 hover:underline text-center">Επιστροφή στην αρχική σελίδα.</Link>
         </div>
     )
 }
