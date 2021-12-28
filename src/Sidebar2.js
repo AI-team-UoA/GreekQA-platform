@@ -20,7 +20,7 @@ export default function Sidebar() {
               flex flex-col flex-grow
               pt-5
               overflow-y-auto
-              bg-navy-400
+              bg-teal-100
               border-r
             ">
               {/* className="flex flex-col items-center flex-shrink-0 px-4 > font-medium*/}
@@ -31,19 +31,19 @@ export default function Sidebar() {
                 block
                 text-left
                 text-3xl
-                text-white
+                text-teal-700
                 tracking-tighter
                 select-none
               ">GreekQA</h1>
               <div className="flex flex-col flex-grow px-4 mt-5">
-                <nav className="flex-1 space-y-1 bg-navy-400">
+                <nav className="flex-1 space-y-1 bg-teal-100">
                   <ul>
                     <li>
                       <NavLink to="/dashboard/get-started"
                         className={({ isActive }) =>
                           [
-                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-navy-600",
-                            isActive ? 'shadow-outline bg-navy-500 text-white' : 'text-navy-50 hover:text-white hover:bg-navy-300',
+                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-teal-300",
+                            isActive ? 'shadow-outline bg-teal-200 text-teal-700' : 'text-teal-600 hover:text-teal-700 hover:bg-teal-200',
                           ].join(" ")
                         }
                       >
@@ -57,8 +57,8 @@ export default function Sidebar() {
                       <NavLink to="/dashboard/guidelines"
                         className={({ isActive }) =>
                           [
-                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-navy-600",
-                            isActive ? 'shadow-outline bg-navy-500 text-white' : 'text-navy-50 hover:text-white hover:bg-navy-300'
+                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:duration-0 active:bg-teal-300",
+                            isActive ? 'shadow-outline bg-teal-200 text-teal-700' : 'text-teal-600 hover:text-teal-700 hover:bg-teal-200'
                           ].join(" ")
                         }
                       >
@@ -69,14 +69,14 @@ export default function Sidebar() {
                       </NavLink>
                     </li>
                   </ul>
-                  <p className="px-4 pt-4 font-medium text-white uppercase select-none">ΔΙΑΧΕΙΡΙΣΤΗΣ</p>
+                  <p className="px-4 pt-4 font-medium text-teal-700 uppercase select-none">ΔΙΑΧΕΙΡΙΣΤΗΣ</p>
                   <ul>
                     <li>
                       <NavLink to="/dashboard/statistics" 
                         className={({ isActive }) =>
                           [
-                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-navy-600",
-                            isActive ? 'shadow-outline bg-navy-500 text-white' : 'text-navy-50 hover:text-white hover:bg-navy-300'
+                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:duration-0 active:bg-teal-300",
+                            isActive ? 'shadow-outline bg-teal-200 text-teal-700' : 'text-teal-600 hover:text-teal-700 hover:bg-teal-200'
                           ].join(" ")
                         }
                       >
@@ -93,14 +93,14 @@ export default function Sidebar() {
               {/* <NavLink to="/account/profile"
                 className={({ isActive }) =>
                   [
-                    "flex flex-shrink-0 p-4 px-4 bg-navy-300 transition duration-300 ease-in-out border-navy-500 active:bg-navy-500",
-                    isActive ? "bg-navy-500" : "hover:bg-navy-500"
+                    "flex flex-shrink-0 p-4 px-4 bg-teal-300 transition duration-300 ease-in-out border-teal-200 active:bg-teal-200",
+                    isActive ? "bg-teal-200" : "hover:bg-teal-200"
                   ].join(" ")
                 }
               > */}
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
-                    <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm text-white transition duration-200 ease-in-out bg-navy-500 hover:bg-navy-600 active:bg-navy-300">
+                    <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm text-teal-700 transition duration-200 ease-in-out bg-teal-200 hover:bg-teal-300 active:bg-teal-400 hover:text-teal-800">
                     <div href="profile" className="flex-shrink-0 block w-full">
                       <div className="flex items-center">
                           {/* <img className="inline-block rounded-full h-6 w-6" src={userImage} /> */}
@@ -125,13 +125,13 @@ export default function Sidebar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute -top-24 left-1 w-60 mt-2 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute -top-24 left-1 w-60 mt-2 origin-top-left bg-teal-50 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="px-1 py-1 ">
                         <Menu.Item>
                           {({ active }) => (
                             <Link to="/account/profile"
                               className={`${
-                                active ? 'transition duration-200 ease-in-out bg-navy-400 text-white' : 'text-navy-800'
+                                active ? 'transition duration-200 ease-in-out bg-teal-200 text-teal-700' : 'text-teal-800'
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                             >
                               Ο λογαριασμός μου
@@ -142,7 +142,7 @@ export default function Sidebar() {
                           {({ active }) => (
                             <Link to="/logout"
                               className={`${
-                                active ? 'transition duration-200 ease-in-out bg-navy-400 text-white' : 'text-navy-800'
+                                active ? 'transition duration-200 ease-in-out bg-teal-200 text-teal-700' : 'text-teal-800'
                               } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                             >
                               Αποσύνδεση
@@ -166,7 +166,7 @@ export default function Sidebar() {
 //       {/* <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="white">
 //           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 //       </svg> */}
-//       <span className="text-sm font-medium ml-3 text-white">{email}</span>
+//       <span className="text-sm font-medium ml-3 text-teal-700">{email}</span>
 //   </div>
 // </div>
 
@@ -182,7 +182,7 @@ export default function Sidebar() {
 //         >
 //           <span
 //             className={`${
-//               enabled ? 'translate-x-8 bg-aqua-400' : 'translate-x-1 bg-navy-500'
+//               enabled ? 'translate-x-8 bg-aqua-400' : 'translate-x-1 bg-teal-200'
 //             } inline-block w-5 h-5 transform rounded-full transition-transform`}
 //           >
 //             <LightSvg stroke="SkyBlue" fill="SkyBlue" fill-opacity="0.4" stroke-opacity="0.8" className={`${
@@ -222,12 +222,12 @@ export default function Sidebar() {
   // px-4
   // py-2
   // mt-1
-  // text-base text-white
+  // text-base text-teal-700
   // transition
   // duration-300
   // ease-in-out
   // transform
-  // border-navy-500
+  // border-teal-200
   // rounded-lg
-  // hover:border-4-navy-500
-  // hover:bg-navy-300"
+  // hover:border-4-teal-200
+  // hover:bg-teal-300"
