@@ -2,16 +2,45 @@ import { Fragment,useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu } from '@headlessui/react'
 import { Transition } from '@headlessui/react'
-// import userImage from 'assets/user.png'
-import { ReactComponent as LightSvg } from 'assets/icons/light.svg'
-import { ReactComponent as DarkSvg } from 'assets/icons/dark.svg'
-import { ReactComponent as GithubSvg } from 'assets/icons/github.svg'
+
+// import { ReactComponent as LightSvg } from 'assets/icons/light.svg'
+// import { ReactComponent as DarkSvg } from 'assets/icons/dark.svg'
+// import { ReactComponent as GithubSvg } from 'assets/icons/github.svg'
 
 
 export default function Sidebar() {
   const email = "sdi1600152@di.uoa.gr"
-  const name= "ΕΥΣΤΑΘΙΟΣ ΣΙΑΤΡΑΣ"
-  const [enabled, setEnabled] = useState(true)
+  const name = "ΕΥΣΤΑΘΙΟΣ ΣΙΑΤΡΑΣ"
+  const [isShowing, setIsShowing] = useState(false)
+
+  const navigationItems = {
+    main:[
+      {
+        name: 'Ξεκινήστε',
+        icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>,
+        path: '/dashboard/get-started',
+      },
+      {
+        name: 'Οδηγίες Χρήσης',
+        icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>,
+        path: '/dashboard/guidelines',
+      }
+    ],
+    admin: [
+      {
+        name: 'Στατιστικά',
+        icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+              </svg>,
+        path: '/dashboard/statistics'
+      }
+    ]
+  }
 
     return (
         <div className="flex h-screen overflow-hidden hidden md:flex ">
@@ -38,55 +67,39 @@ export default function Sidebar() {
               <div className="flex flex-col flex-grow px-4 mt-5">
                 <nav className="flex-1 space-y-1 bg-navy-400">
                   <ul>
-                    <li>
-                      <NavLink to="/dashboard/get-started"
-                        className={({ isActive }) =>
-                          [
-                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-navy-600",
-                            isActive ? 'shadow-outline bg-navy-500 text-white' : 'text-navy-50 hover:text-white hover:bg-navy-300',
-                          ].join(" ")
-                        }
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        <span className="ml-4 select-none">Ξεκινήστε</span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/dashboard/guidelines"
-                        className={({ isActive }) =>
-                          [
-                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-navy-600",
-                            isActive ? 'shadow-outline bg-navy-500 text-white' : 'text-navy-50 hover:text-white hover:bg-navy-300'
-                          ].join(" ")
-                        }
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <span className="ml-4">Οδηγίες Χρήσης</span>
-                      </NavLink>
-                    </li>
+                    {navigationItems.main.map(item => (
+                        <li>
+                          <NavLink to={item.path}
+                            className={({ isActive }) =>
+                              [
+                                "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-navy-600",
+                                isActive ? 'shadow-outline bg-navy-500 text-white' : 'text-navy-50 hover:text-white hover:bg-navy-300',
+                              ].join(" ")
+                            }
+                          >
+                            {item.icon}
+                            <span className="ml-4 select-none">{item.name}</span>
+                          </NavLink>
+                        </li>))
+                    }
                   </ul>
                   <p className="px-4 pt-4 font-medium text-white uppercase select-none">ΔΙΑΧΕΙΡΙΣΤΗΣ</p>
                   <ul>
-                    <li>
-                      <NavLink to="/dashboard/statistics" 
-                        className={({ isActive }) =>
-                          [
-                            "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-navy-600",
-                            isActive ? 'shadow-outline bg-navy-500 text-white' : 'text-navy-50 hover:text-white hover:bg-navy-300'
-                          ].join(" ")
-                        }
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-                        </svg>
-                        <span className="ml-4 select-none">Στατιστικά</span>
-                      </NavLink>
-                    </li>
+                    {navigationItems.admin.map(item => (
+                        <li>
+                          <NavLink to={item.path}
+                            className={({ isActive }) =>
+                              [
+                                "inline-flex items-center w-full px-4 py-2 mt-1 text-base font-medium rounded-lg transition duration-200 ease-in-out transform active:bg-navy-600",
+                                isActive ? 'shadow-outline bg-navy-500 text-white' : 'text-navy-50 hover:text-white hover:bg-navy-300',
+                              ].join(" ")
+                            }
+                          >
+                            {item.icon}
+                            <span className="ml-4 select-none">{item.name}</span>
+                          </NavLink>
+                        </li>))
+                    }
                   </ul>
                 </nav>
               </div>
@@ -104,7 +117,7 @@ export default function Sidebar() {
                     <div href="profile" className="flex-shrink-0 block w-full">
                       <div className="flex items-center">
                           {/* <img className="inline-block rounded-full h-6 w-6" src={userImage} /> */}
-                          <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 22V18C5 15.7909 6.79086 14 9 14H15C17.2091 14 19 15.7909 19 18V22" stroke="currentColor" stroke-width="2"></path><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"></circle></svg>
+                          <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 22V18C5 15.7909 6.79086 14 9 14H15C17.2091 14 19 15.7909 19 18V22" stroke="currentColor" strokeWidth="2"></path><circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth={2}></circle></svg>
                           {/* <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="white">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg> */}
