@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+
+import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
 
 export default function RegisterForm() {
+    const [passwordShown, setPasswordShown] = useState(false);
+    const togglePasswordVisibility = () => setPasswordShown(!passwordShown);
+    const setPasswordNotShown = () => setPasswordShown(false);
+    
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
     return (
         <div className="w-full max-w-xl mx-auto lg:w-96">
             <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Εγγραφή στο GreekQA</h1>
@@ -8,81 +18,84 @@ export default function RegisterForm() {
                 <form onSubmit="" className="space-y-6">
                     <div>
                         <label htmlFor="text" className="block text-md font-medium text-navy-600">Όνομα</label>
-                        <div className="mt-1">
-                            <input id="firstname" name="firstname" type="text" autoComplete="given-name" required placeholder="To όνομά σου (Γεώργιος)" className="
-                                block
-                                w-full
-                                px-5
-                                py-3
-                                text-base
-                                placeholder-gray-300
-                                transition
-                                duration-300
-                                ease-in-out
-                                border-transparent
-                                rounded-lg
-                                text-neutral-600
-                                bg-gray-50
-                                focus:border-transparent
-                                focus:ring-white
-                                focus:ring-offset-2
-                                focus:ring-offset-navy-400
-                            " />
-                        </div>
+                        <input id="firstname" name="firstname" type="text" autoComplete="given-name" required placeholder="To όνομά σου (Γεώργιος)" className="
+                            block
+                            w-full
+                            mt-1
+                            px-5
+                            py-3
+                            text-base
+                            placeholder-gray-300
+                            transition
+                            duration-300
+                            ease-in-out
+                            border-transparent
+                            rounded-lg
+                            text-neutral-600
+                            bg-gray-50
+                            focus:border-transparent
+                            focus:ring-white
+                            focus:ring-offset-2
+                            focus:ring-offset-navy-400
+                        " />
                     </div>
                     <div>
                         <label htmlFor="text" className="block text-md font-medium text-navy-600">Επώνυμο</label>
-                        <div className="mt-1">
-                            <input id="lastname" name="lastname" type="text" autoComplete="family-name" required placeholder="To επώνυμό σου (Παπαδόπουλος)" className="
-                                block
-                                w-full
-                                px-5
-                                py-3
-                                text-base
-                                placeholder-gray-300
-                                transition
-                                duration-300
-                                ease-in-out
-                                border-transparent
-                                rounded-lg
-                                text-neutral-600
-                                bg-gray-50
-                                focus:border-transparent
-                                focus:ring-white
-                                focus:ring-offset-2
-                                focus:ring-offset-navy-400
-                            " />
-                        </div>
+                        <input id="lastname" name="lastname" type="text" autoComplete="family-name" required placeholder="To επώνυμό σου (Παπαδόπουλος)" className="
+                            block
+                            w-full
+                            mt-1
+                            px-5
+                            py-3
+                            text-base
+                            placeholder-gray-300
+                            transition
+                            duration-300
+                            ease-in-out
+                            border-transparent
+                            rounded-lg
+                            text-neutral-600
+                            bg-gray-50
+                            focus:border-transparent
+                            focus:ring-white
+                            focus:ring-offset-2
+                            focus:ring-offset-navy-400
+                        " />
                     </div>
                     <div>
                         <label htmlFor="email" className="block text-md font-medium text-navy-600"> Διεύθυνση email </label>
-                        <div className="mt-1">
-                            <input id="email" name="email" type="email" autoComplete="email" required placeholder="To email σου (*.uoa.gr)" className="
-                                block
-                                w-full
-                                px-5
-                                py-3
-                                text-base
-                                placeholder-gray-300
-                                transition
-                                duration-300
-                                ease-in-out
-                                border-transparent
-                                rounded-lg
-                                text-neutral-600
-                                bg-gray-50
-                                focus:border-transparent
-                                focus:ring-white
-                                focus:ring-offset-2
-                                focus:ring-offset-navy-400
-                            " />
-                        </div>
+                        <input id="email" name="email" type="email" autoComplete="email" required placeholder="To email σου (*.uoa.gr)" className="
+                            block
+                            w-full
+                            mt-1
+                            px-5
+                            py-3
+                            text-base
+                            placeholder-gray-300
+                            transition
+                            duration-300
+                            ease-in-out
+                            border-transparent
+                            rounded-lg
+                            text-neutral-600
+                            bg-gray-50
+                            focus:border-transparent
+                            focus:ring-white
+                            focus:ring-offset-2
+                            focus:ring-offset-navy-400
+                        " />
                     </div>
                     <div className="space-y-1">
                         <label htmlFor="password" className="block text-md font-medium text-navy-600">Συνθηματικό</label>
-                        <div className="mt-100">
-                            <input id="password" name="password" type="password" autoComplete="new-password" required placeholder="Το συνθηματικό σου" className="
-                                block
+                        <div className="relative">
+                        <div className="absolute inset-y-0 right-4 flex items-center pl-2">
+                            {passwordShown ? 
+                                <EyeOffIcon className="h-5 w-5 text-navy-600" onClick={togglePasswordVisibility} /> :
+                                <EyeIcon className="h-5 w-5" onClick={togglePasswordVisibility} />
+                            }
+                        </div>
+                        <input id="password" name="password" type={passwordShown ? "text" : "password"} autoComplete="new-password" required placeholder="Το συνθηματικό σου" className="
+                                pr-10
                                 w-full
                                 px-5
                                 py-3
@@ -101,9 +114,12 @@ export default function RegisterForm() {
                                 focus:ring-offset-navy-400
                             " />
                         </div>
+                        <div className="ml-2 text-sm text-gray-500">
+                            Ο κωδικός σου πρέπει να είναι τουλάχιστον 8 χαρακτήρες και να περιλαμβάνει τουλάχιστον έναν αριθμό, ένα κεφαλαίο και ένα μικρό γράμμα.
+                        </div>
                     </div>
                     <div>
-                        <button type="submit" className="
+                        <button type="submit" onClick={setPasswordNotShown} className="
                             flex
                             items-center
                             justify-center
