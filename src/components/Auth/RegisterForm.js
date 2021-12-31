@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import NavyLink from 'components/NavyLink';
 
 export default function RegisterForm() {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -10,134 +11,32 @@ export default function RegisterForm() {
     const setPasswordNotShown = () => setPasswordShown(false);
     
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    };
 
     return (
         <div className="w-full max-w-xl mx-auto lg:w-96">
             <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Εγγραφή στο GreekQA</h1>
             <div className="mt-8">
-                <form onSubmit="" className="space-y-6">
-                    <div>
-                        <label htmlFor="text" className="block text-md font-medium text-navy-600">Όνομα</label>
-                        <input id="firstname" name="firstname" type="text" autoComplete="given-name" required placeholder="To όνομά σου (Γεώργιος)" className="
-                            block
-                            w-full
-                            mt-1
-                            px-5
-                            py-3
-                            text-base
-                            placeholder-gray-300
-                            transition
-                            duration-300
-                            ease-in-out
-                            border-transparent
-                            rounded-lg
-                            text-neutral-600
-                            bg-gray-50
-                            focus:border-transparent
-                            focus:ring-white
-                            focus:ring-offset-2
-                            focus:ring-offset-navy-400
-                        " />
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    <Input label="Όνομα" id="firstname" name="firstname" type="text" autoComplete="given-name" placeholder="Το όνομά σου (ΓΕΩΡΓΙΟΣ)"
+                        errors={errors.firstname} register={register("firstname", { required: "Παρακαλώ συμπλήρωσε το όνομά σου" })}
+                    />
+                    <Input label="Επώνυμο" id="lastname" name="lastname" type="text" autoComplete="family-name" placeholder="Το επώνυμό σου (ΠΑΠΑΔΟΠΟΥΛΟΣ)"
+                        errors={errors.lastname} register={register("lastname", { required: "Παρακαλώ συμπλήρωσε το επώνυμό σου" })}
+                    />
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σου (*.uoa.gr)"
+                        errors={errors.email} register={register("email", { required: "Παρακαλώ συμπλήρωσε το email σου" })}
+                    />
+                    <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="current-password" placeholder="To συνθηματικό σου (*.uoa.gr)"
+                        errors={errors.password} register={register("password", { required: "Παρακαλώ συμπλήρωσε το συνθηματικό σου" })}
+                        passwordShown={passwordShown} togglePasswordVisibility={togglePasswordVisibility}
+                    />
+                    <div className="ml-2 text-sm text-gray-500">
+                        Το συνθηματικό σου πρέπει να είναι τουλάχιστον 8 χαρακτήρες και να περιλαμβάνει τουλάχιστον έναν αριθμό, ένα κεφαλαίο και ένα μικρό γράμμα.
                     </div>
-                    <div>
-                        <label htmlFor="text" className="block text-md font-medium text-navy-600">Επώνυμο</label>
-                        <input id="lastname" name="lastname" type="text" autoComplete="family-name" required placeholder="To επώνυμό σου (Παπαδόπουλος)" className="
-                            block
-                            w-full
-                            mt-1
-                            px-5
-                            py-3
-                            text-base
-                            placeholder-gray-300
-                            transition
-                            duration-300
-                            ease-in-out
-                            border-transparent
-                            rounded-lg
-                            text-neutral-600
-                            bg-gray-50
-                            focus:border-transparent
-                            focus:ring-white
-                            focus:ring-offset-2
-                            focus:ring-offset-navy-400
-                        " />
-                    </div>
-                    <div>
-                        <label htmlFor="email" className="block text-md font-medium text-navy-600"> Διεύθυνση email </label>
-                        <input id="email" name="email" type="email" autoComplete="email" required placeholder="To email σου (*.uoa.gr)" className="
-                            block
-                            w-full
-                            mt-1
-                            px-5
-                            py-3
-                            text-base
-                            placeholder-gray-300
-                            transition
-                            duration-300
-                            ease-in-out
-                            border-transparent
-                            rounded-lg
-                            text-neutral-600
-                            bg-gray-50
-                            focus:border-transparent
-                            focus:ring-white
-                            focus:ring-offset-2
-                            focus:ring-offset-navy-400
-                        " />
-                    </div>
-                    <div className="space-y-1">
-                        <label htmlFor="password" className="block text-md font-medium text-navy-600">Συνθηματικό</label>
-                        <div className="relative">
-                        <div className="absolute inset-y-0 right-4 flex items-center pl-2">
-                            {passwordShown ? 
-                                <EyeOffIcon className="h-5 w-5 text-navy-600" onClick={togglePasswordVisibility} /> :
-                                <EyeIcon className="h-5 w-5" onClick={togglePasswordVisibility} />
-                            }
-                        </div>
-                        <input id="password" name="password" type={passwordShown ? "text" : "password"} autoComplete="new-password" required placeholder="Το συνθηματικό σου" className="
-                                pr-10
-                                w-full
-                                px-5
-                                py-3
-                                text-base
-                                placeholder-gray-300
-                                transition
-                                duration-300
-                                ease-in-out
-                                border-transparent
-                                rounded-lg
-                                text-neutral-600
-                                bg-gray-50
-                                focus:border-transparent
-                                focus:ring-white
-                                focus:ring-offset-2
-                                focus:ring-offset-navy-400
-                            " />
-                        </div>
-                        <div className="ml-2 text-sm text-gray-500">
-                            Ο κωδικός σου πρέπει να είναι τουλάχιστον 8 χαρακτήρες και να περιλαμβάνει τουλάχιστον έναν αριθμό, ένα κεφαλαίο και ένα μικρό γράμμα.
-                        </div>
-                    </div>
-                    <div>
-                        <button type="submit" onClick={setPasswordNotShown} className="
-                            flex
-                            items-center
-                            justify-center
-                            w-full
-                            px-10
-                            py-4
-                            text-base
-                            font-medium
-                            text-center text-white
-                            transition
-                            duration-300
-                            ease-in-out
-                            bg-navy-400
-                            rounded-3xl
-                            hover:bg-navy-500
-                            focus:outline-none
-                        ">Εγγραφή</button>
-                    </div>
+                    <Button type="submit" onClick={setPasswordNotShown}>Εγγραφή</Button>
                 </form>
                 <div className="relative my-4">
                     <div className="absolute inset-0 flex items-center">
@@ -148,7 +47,7 @@ export default function RegisterForm() {
                     </div>
                 </div>
                 <div className="relative flex justify-center">
-                    <Link to="/login" className="text-sm text-navy-400 hover:underline hover:text-gray-600">Είσοδος στην εφαρμογή (μόνο με email του ΕΚΠΑ)</Link>
+                    <NavyLink to="/login">Είσοδος στην εφαρμογή (μόνο με email του ΕΚΠΑ)</NavyLink>
                 </div>
             </div>
         </div>
