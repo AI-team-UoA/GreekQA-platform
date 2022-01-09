@@ -1,22 +1,26 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSignup } from 'hooks/useSignup';
 
 import Input from 'components/Input';
 import Button from 'components/Button';
 import NavyLink from 'components/NavyLink';
 
-export default function RegisterForm() {
+export default function SignupForm() {
     const [passwordShown, setPasswordShown] = useState(false);
     const togglePasswordVisibility = () => setPasswordShown(!passwordShown);
     const setPasswordNotShown = () => setPasswordShown(false);
+
+    const { signup, error, isPending } = useSignup();
     
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = (data, e) => {
+        e.preventDefault();
+        signup(data.email, data.password, data.firstname, data.lastname);
     };
 
     return (
-        <div className="w-full max-w-xl mx-auto lg:w-96">
+        <div>
             <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Εγγραφή στο GreekQA</h1>
             <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -29,7 +33,7 @@ export default function RegisterForm() {
                     <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σου (*.uoa.gr)"
                         errors={errors.email} register={register("email", { required: "Παρακαλώ συμπλήρωσε το email σου" })}
                     />
-                    <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="current-password" placeholder="To συνθηματικό σου (*.uoa.gr)"
+                    <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="new-password" placeholder="To συνθηματικό σου"
                         errors={errors.password} register={register("password", { required: "Παρακαλώ συμπλήρωσε το συνθηματικό σου" })}
                         passwordShown={passwordShown} togglePasswordVisibility={togglePasswordVisibility}
                     />
@@ -37,6 +41,7 @@ export default function RegisterForm() {
                         Το συνθηματικό σου πρέπει να είναι τουλάχιστον 8 χαρακτήρες και να περιλαμβάνει τουλάχιστον έναν αριθμό, ένα κεφαλαίο και ένα μικρό γράμμα.
                     </div>
                     <Button type="submit" onClick={setPasswordNotShown}>Εγγραφή</Button>
+                    {error && <div className="text-red-500 text-sm">{error}</div>}
                 </form>
                 <div className="relative my-4">
                     <div className="absolute inset-0 flex items-center">

@@ -1,12 +1,12 @@
 import { ReactComponent as TypewriterSvg } from 'assets/typewriter.svg'
 
 import AuthLayout from 'layouts/AuthLayout'
-import RegisterForm from 'components/Auth/RegisterForm'
+import SignupForm from 'components/Auth/SignupForm'
 
-export default function RegisterPage() { 
+export default function SignupPage() { 
     return (
         <AuthLayout 
-            form={ <RegisterForm /> }
+            form={ <SignupForm /> }
             illustration={ <TypewriterSvg /> }
         />
     );

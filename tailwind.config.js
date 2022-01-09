@@ -35,18 +35,6 @@ module.exports = {
         },
         cerise: {
           '50':  '#fdfcfb',
-          '100': '#faf0f2',
-          '200': '#f6cce6',
-          '300': '#ec9fca',
-          '400': '#ea70aa',
-          '500': '#dd4c8e',
-          '600': '#c7326d',
-          '700': '#a0264f',
-          '800': '#741b33',
-          '900': '#46111b',
-        },
-        cerise: {
-          '50':  '#fdfcfb',
           '100': '#fbf0ed',
           '200': '#f7cfda',
           '300': '#eda2b6',
@@ -127,7 +115,8 @@ module.exports = {
     extend: {
       backgroundColor: ["autofill", "active", "disabled"],
       textColor: ["autofill", "active", "disabled"],
-      transitionDuration: ["active"]
+      transitionDuration: ["active"],
+      cursor: ["disabled"]
     }
   },
 }

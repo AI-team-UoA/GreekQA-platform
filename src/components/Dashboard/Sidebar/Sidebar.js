@@ -3,9 +3,12 @@ import { Link, NavLink } from 'react-router-dom'
 import { Menu } from '@headlessui/react'
 import { Transition } from '@headlessui/react'
 
+import { useAuthContext } from 'hooks/useAuthContext';
+import { useLogout } from 'hooks/useLogout';
+
 export default function Sidebar() {
-  const email = "koubarak@di.uoa.gr"
-  const name = "ΜΑΝΩΛΗΣ ΚΟΥΜΠΑΡΑΚΗΣ"
+  const { user } = useAuthContext();
+  const { logout, isPending } = useLogout()
 
   const navigationItems = {
     main:[
@@ -97,8 +100,8 @@ export default function Sidebar() {
                         <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth={2}></circle>
                       </svg>
                       <div className="text-left">
-                        <div className="text-sm ml-3 h-5 text-ellipsis overflow-hidden font-medium select-none">{email}</div>
-                        <div className="text-sm ml-3 h-5 text-ellipsis overflow-hidden select-none">{name}</div>
+                        <div className="text-sm ml-3 h-5 text-ellipsis overflow-hidden font-medium select-none">{user.displayName}</div>
+                        <div className="text-sm ml-3 h-5 text-ellipsis overflow-hidden select-none">{user.email}</div>
                       </div>
                   </div>
                   </div>
@@ -128,13 +131,13 @@ export default function Sidebar() {
                     </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
-                        <Link to="/logout"
+                        <button onClick={logout}
                           className={`${
                             active ? 'transition duration-200 ease-in-out bg-navy-400 text-white' : 'text-navy-800'
                           } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                         >
-                          Αποσύνδεση
-                        </Link>
+                          {isPending ? 'Αποσύνδεση...' : 'Αποσύνδεση'}
+                        </button>
                       )}
                     </Menu.Item>
                   </div>

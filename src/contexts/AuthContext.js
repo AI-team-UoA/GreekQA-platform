@@ -1,62 +1,41 @@
-import React, { useContext, useState, useEffect } from "react"
-import { auth } from "utils/firebase"
+import { createContext, useReducer, useEffect } from 'react';
+import { auth } from 'firebase/config';
+import { onAuthStateChanged } from 'firebase/auth';
 
-const AuthContext = React.createContext()
+export const AuthContext = createContext()
 
-export function useAuth() {
-  return useContext(AuthContext)
+export const authReducer = (state, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return { ...state, user: action.payload }
+    case 'LOGOUT':
+      return { ...state, user: null }
+    case 'AUTH_IS_READY':
+      return { user: action.payload, authIsReady: true }
+    default:
+      return state
+  }
 }
 
-export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState()
-  const [loading, setLoading] = useState(true)
-
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
-  }
-
-  function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password)
-  }
-
-  function logout() {
-    return auth.signOut()
-  }
-
-  function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email)
-  }
-
-  function updateEmail(email) {
-    return currentUser.updateEmail(email)
-  }
-
-  function updatePassword(password) {
-    return currentUser.updatePassword(password)
-  }
+export const AuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(authReducer, {
+    user: null,
+    authIsReady: false
+  })
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setCurrentUser(user)
-      setLoading(false)
+    const unsub = onAuthStateChanged(auth, user => {
+      dispatch({ type: 'AUTH_IS_READY', payload: user });
+      unsub();
     })
-
-    return unsubscribe
   }, [])
 
-  const value = {
-    currentUser,
-    login,
-    signup,
-    logout,
-    resetPassword,
-    updateEmail,
-    updatePassword
-  }
-
+  console.log('AuthContext state:', state)
+  
   return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
+    <AuthContext.Provider value={{ ...state, dispatch }}>
+      { children }
     </AuthContext.Provider>
   )
+
 }

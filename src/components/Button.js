@@ -1,6 +1,6 @@
 export default function Button(props) {
     return (
-        <button type="submit" onClick={props.onClick} 
+        <button {...props} 
         className="
             flex
             items-center
@@ -17,9 +17,11 @@ export default function Button(props) {
             ease-in-out
             transform
             bg-navy-400
-            rounded-3xl
+            rounded-xl
             hover:bg-navy-500
             focus:outline-none
+            disabled:bg-navy-200
+            disabled:cursor-not-allowed	 
         ">
             {props.children}
         </button>

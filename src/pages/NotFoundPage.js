@@ -1,5 +1,6 @@
-import { ReactComponent as NotFoundSvg } from 'assets/notfound.svg'
-import { Link } from 'react-router-dom'
+import { ReactComponent as NotFoundSvg } from 'assets/notfound.svg';
+
+import NavyLink from 'components/NavyLink';
 
 export default function NotFound() {
     return (
@@ -8,7 +9,7 @@ export default function NotFound() {
                 <NotFoundSvg />
             </div>
             <div className="mx-auto mt-20 text-3xl font-bold text-navy-800 text-center">Η σελίδα δεν βρέθηκε.</div>
-            <Link to="/" className="mx-auto mt-2 text-lg text-navy-400 hover:underline hover:text-gray-600 text-center">Επιστροφή στην αρχική σελίδα.</Link>
+            <NavyLink to="/" className="mx-auto mt-2 text-lg text-center">Επιστροφή στην αρχική σελίδα.</NavyLink>
         </div>
     )
 }
