@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export default function GetStarted() {
+export function GetStarted() {
     return (
         <div>
             <div className="mt-6 mx-auto text-md text-navy-900">

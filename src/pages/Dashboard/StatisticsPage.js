@@ -1,7 +1,7 @@
-import DashboardLayout from 'layouts/DashboardLayout'
-import Statistics from 'components/Dashboard/Statistics'
+import { DashboardLayout } from 'layouts/DashboardLayout';
+import { Statistics } from 'components/Dashboard/Statistics';
 
-export default function StatisticsPage() {
+export function StatisticsPage() {
     return (
         <DashboardLayout 
             title="Στατιστικά"

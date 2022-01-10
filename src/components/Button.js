@@ -1,4 +1,4 @@
-export default function Button(props) {
+export function Button(props) {
     return (
         <button {...props} 
         className="
@@ -21,7 +21,7 @@ export default function Button(props) {
             hover:bg-navy-500
             focus:outline-none
             disabled:bg-navy-200
-            disabled:cursor-not-allowed	 
+            disabled:cursor-not-allowed
         ">
             {props.children}
         </button>

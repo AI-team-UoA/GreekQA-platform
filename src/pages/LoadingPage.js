@@ -1,4 +1,4 @@
-export default function NotFound() {
+export function LoadingPage() {
     return (
         <div className="flex flex-col justify-center items-center h-screen">
             <svg className="animate-spin h-16 w-16 text-white stroke-navy-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

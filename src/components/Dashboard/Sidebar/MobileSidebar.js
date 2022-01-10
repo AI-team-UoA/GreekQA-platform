@@ -2,9 +2,9 @@ import { Fragment,useState } from 'react'
 import { Transition, Dialog } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 
-import Sidebar from 'components/Dashboard/Sidebar'
+import { Sidebar } from 'components/Dashboard/Sidebar'
 
-export default function MobileSidebar() {
+export function MobileSidebar() {
   const [isOpen, setOpen] = useState(false)
 
   return (

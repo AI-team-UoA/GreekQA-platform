@@ -1,7 +1,8 @@
-export default function AuthLayout({ form, illustration }) {
+export function AuthLayout({ form, illustration }) {
     return (
         <div className="flex min-h-screen overflow-hidden">
             <div className="
+                transition-all duration-500 ease-in-out transform
                 flex flex-col
                 justify-center
                 content-center

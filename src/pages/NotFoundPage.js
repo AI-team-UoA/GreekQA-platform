@@ -1,8 +1,8 @@
 import { ReactComponent as NotFoundSvg } from 'assets/notfound.svg';
 
-import NavyLink from 'components/NavyLink';
+import { NavyLink } from 'components/NavyLink';
 
-export default function NotFound() {
+export function NotFoundPage() {
     return (
         <div className="h-screen w-screen flex flex-col content-center place-content-center">
             <div className="mx-auto w-80"> 

@@ -8,7 +8,7 @@ import { useLogout } from 'hooks/useLogout';
 
 import { NavigationItems } from 'components/Dashboard/Sidebar/NavigationItems';
 
-export default function Sidebar() {
+export function Sidebar() {
   const { user } = useAuthContext();
   const { logout, isPending } = useLogout()
 

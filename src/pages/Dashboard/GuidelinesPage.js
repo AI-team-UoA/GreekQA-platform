@@ -1,7 +1,7 @@
-import DashboardLayout from "layouts/DashboardLayout";
-import Guidelines from "components/Dashboard/Guidelines";
+import { DashboardLayout } from "layouts/DashboardLayout";
+import { Guidelines } from "components/Dashboard/Guidelines";
 
-export default function GuidelinesPage() {
+export function GuidelinesPage() {
     return (
         <DashboardLayout 
             title="Οδηγίες Χρήσης"

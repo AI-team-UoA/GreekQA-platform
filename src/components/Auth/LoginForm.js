@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useLogin } from 'hooks/useLogin';
-import Input from 'components/Input';
-import Button from 'components/Button';
-import NavyLink from 'components/NavyLink';
 
-export default function LoginForm() {
+import { Input } from 'components/Input';
+import { Button } from 'components/Button';
+import { NavyLink } from 'components/NavyLink';
+
+export function LoginForm() {
     const [passwordShown, setPasswordShown] = useState(false);
     const togglePasswordVisibility = () => setPasswordShown(!passwordShown);
     const setPasswordNotShown = () => setPasswordShown(false);

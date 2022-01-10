@@ -1,7 +1,7 @@
-import DashboardLayout from 'layouts/DashboardLayout'
-import Profile from 'components/Dashboard/Profile'
+import { DashboardLayout } from 'layouts/DashboardLayout';
+import { Profile } from 'components/Dashboard/Profile';
 
-export default function ProfilePage() {
+export function ProfilePage() {
     return (
         <DashboardLayout 
             title="Ο λογαριασμός μου"

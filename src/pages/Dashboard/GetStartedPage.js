@@ -1,7 +1,7 @@
-import DashboardLayout from 'layouts/DashboardLayout'
-import GetStarted from 'components/Dashboard/GetStarted'
+import { DashboardLayout } from 'layouts/DashboardLayout';
+import { GetStarted } from 'components/Dashboard/GetStarted';
 
-export default function GetStartedPage() {
+export function GetStartedPage() {
     return (
         <DashboardLayout 
             title="Ξεκινήστε να συνεισφέρετε"

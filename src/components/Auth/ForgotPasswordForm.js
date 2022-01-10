@@ -1,10 +1,10 @@
 // import { useNavigate } from 'react-router-dom';
 
-import Button from 'components/Button';
-import Input from 'components/Input';
-import NavyLink from 'components/NavyLink';
+import { Button } from 'components/Button';
+import { Input } from 'components/Input';
+import { NavyLink } from 'components/NavyLink';
 
-export default function ForgotPasswordForm() {
+export function ForgotPasswordForm() {
     // const navigate = useNavigate();
     return (
         <div>

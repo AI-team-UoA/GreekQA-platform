@@ -1,9 +1,9 @@
-import { Disclosure } from '@headlessui/react'
-import { ChevronUpIcon } from '@heroicons/react/solid'
+import { Disclosure } from '@headlessui/react';
+import { ChevronUpIcon } from '@heroicons/react/solid';
 
 import { GuidelineItems } from 'components/Dashboard/Guidelines/GuidelineItems';
 
-export default function Guidelines() {
+export function Guidelines() {
   
     return (
         <div className="w-full mx-auto rounded-lg shadow-lg p-6">

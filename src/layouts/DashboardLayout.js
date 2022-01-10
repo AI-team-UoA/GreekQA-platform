@@ -1,7 +1,7 @@
-import Sidebar from 'components/Dashboard/Sidebar'
-import MobileSidebar from 'components/Dashboard/Sidebar/MobileSidebar'
+import { Sidebar } from 'components/Dashboard/Sidebar'
+import { MobileSidebar } from 'components/Dashboard/Sidebar/MobileSidebar'
 
-export default function DashboardLayout({ title, content }) {
+export function DashboardLayout({ title, content }) {
     return (
         <div className="flex flex-col md:flex-row h-screen">
             <div className="hidden md:flex">

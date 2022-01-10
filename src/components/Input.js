@@ -1,6 +1,6 @@
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
 
-export default function Input(props) {
+export function Input(props) {
     switch (props.type) {
         case 'password':
             return (
@@ -43,9 +43,8 @@ export default function Input(props) {
                         className={`block w-full mt-1 px-5 py-3 text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
                                     transition duration-300 ease-in-out border-transparent 
                                     focus:border-transparent focus:ring-white focus:ring-offset-2 
-                                    disabled:bg-gray-200 disabled:text-gray-400
-                                    ${props.errors ? "border-red-500 focus:ring-offset-red-500" : "focus:ring-offset-navy-400"}
-                                    ${props.disabled ? "cursor-not-allowed" : ""}`}
+                                    disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:ring-offset-0
+                                    ${props.errors ? "border-red-500 focus:ring-offset-red-500" : "focus:ring-offset-navy-400"}`}
                     {...props.register}/>
                     <span className="text-red-400 font-medium">{props.errors?.message}</span>
                 </div>

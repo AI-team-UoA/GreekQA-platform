@@ -1,9 +1,9 @@
 import { useAuthContext } from 'hooks/useAuthContext';
 
-import Input from 'components/Input';
-import Button from 'components/Button';
+import { Input } from 'components/Input';
+import { Button } from 'components/Button';
 
-export default function Profile() {
+export function Profile() {
     const { user } = useAuthContext();
     const [firstname, lastname] = user.displayName.split(' ');
 
