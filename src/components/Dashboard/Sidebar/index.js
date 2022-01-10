@@ -6,38 +6,11 @@ import { Transition } from '@headlessui/react'
 import { useAuthContext } from 'hooks/useAuthContext';
 import { useLogout } from 'hooks/useLogout';
 
+import { NavigationItems } from 'components/Dashboard/Sidebar/NavigationItems';
+
 export default function Sidebar() {
   const { user } = useAuthContext();
   const { logout, isPending } = useLogout()
-
-  const navigationItems = {
-    main:[
-      {
-        name: 'Ξεκινήστε',
-        icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>,
-        path: '/dashboard/get-started',
-      },
-      {
-        name: 'Οδηγίες Χρήσης',
-        icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>,
-        path: '/dashboard/guidelines',
-      }
-    ],
-    admin: [
-      {
-        name: 'Στατιστικά',
-        icon: <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-              </svg>,
-        path: '/dashboard/statistics'
-      }
-    ]
-  }
 
   return (
       <div className="flex flex-col w-72">
@@ -60,7 +33,7 @@ export default function Sidebar() {
           <div className="flex flex-col flex-grow px-4 mt-5">
             <nav className="flex-1 space-y-1 bg-navy-400">
               <ul>
-                {navigationItems.main.map(item => (
+                {NavigationItems.main.map(item => (
                     <li>
                       <NavLink to={item.path}
                         className={({ isActive }) => `${
@@ -75,7 +48,7 @@ export default function Sidebar() {
               </ul>
               <p className="px-4 pt-4 font-medium text-white uppercase select-none">ΔΙΑΧΕΙΡΙΣΤΗΣ</p>
               <ul>
-                {navigationItems.admin.map(item => (
+                {NavigationItems.admin.map(item => (
                     <li>
                       <NavLink to={item.path}
                         className={({ isActive }) => `${

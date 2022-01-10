@@ -1,4 +1,4 @@
-import Sidebar from 'components/Dashboard/Sidebar/Sidebar'
+import Sidebar from 'components/Dashboard/Sidebar'
 import MobileSidebar from 'components/Dashboard/Sidebar/MobileSidebar'
 
 export default function DashboardLayout({ title, content }) {
