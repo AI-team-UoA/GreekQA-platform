@@ -3,19 +3,17 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-d
 
 import { useAuthContext } from './hooks/useAuthContext';
 
-import { LoginPage } from 'pages/Auth/LoginPage.js';
-import { SignupPage } from 'pages/Auth/SignupPage.js';
-import { ForgotPasswordPage } from 'pages/Auth/ForgotPasswordPage.js';
-import { GetStartedPage } from 'pages/Dashboard/GetStartedPage.js';
-import { ContributePage } from 'pages/Dashboard/ContributePage.js';
-import { GuidelinesPage } from 'pages/Dashboard/GuidelinesPage.js';
-import { ProfilePage } from 'pages/Dashboard/ProfilePage.js';
-import { StatisticsPage } from 'pages/Dashboard/StatisticsPage.js';
-import { NotFoundPage } from 'pages/NotFoundPage.js';
-import { LoadingPage } from 'pages/LoadingPage.js';
-
-
-// const LoginPage = lazy(() => import("./pages/LoginPage"))
+import { LoginPage } from 'pages/Auth/LoginPage';
+import { SignupPage } from 'pages/Auth/SignupPage';
+import { ForgotPasswordPage } from 'pages/Auth/ForgotPasswordPage';
+import { VerifyEmailPage } from 'pages/Auth/VerifyEmailPage';
+import { GetStartedPage } from 'pages/Dashboard/GetStartedPage';
+import { ContributePage } from 'pages/Dashboard/ContributePage';
+import { GuidelinesPage } from 'pages/Dashboard/GuidelinesPage';
+import { ProfilePage } from 'pages/Dashboard/ProfilePage';
+import { StatisticsPage } from 'pages/Dashboard/StatisticsPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
+import { LoadingPage } from 'pages/LoadingPage';
 
 function App() {
 
@@ -26,58 +24,65 @@ function App() {
               <Routes>
                 <Route exact path="/login"
                   element={
-                    <RequireNotAuth redirectTo="/dashboard/get-started">
+                    <RequireNotAuth redirectAuth="/dashboard/get-started">
                       <LoginPage />
                     </RequireNotAuth>
                   }
                 />
                 <Route exact path="/signup"
                   element={
-                    <RequireNotAuth redirectTo="/dashboard/get-started">
+                    <RequireNotAuth redirectAuth="/dashboard/get-started">
                       <SignupPage />
                     </RequireNotAuth>
                   }
                 />
                 <Route exact path="/forgot-password"
                   element={
-                    <RequireNotAuth redirectTo="/dashboard/get-started">
+                    <RequireNotAuth redirectAuth="/dashboard/get-started">
                       <ForgotPasswordPage />
                     </RequireNotAuth>
                   }
                 />
+                <Route exact path="/verify-email"
+                  element={
+                    <RequireAuthNotVerified redirectNotAuth="/login" redirectVerified="/dashboard/get-started">
+                      <VerifyEmailPage />
+                    </RequireAuthNotVerified>
+                  }
+                />
                 <Route exact path="/dashboard/get-started"
                   element={
-                    <RequireAuth redirectTo="/login">
+                    <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <GetStartedPage />
-                    </RequireAuth>
+                    </RequireAuthVerified>
                   }
                 />
                 <Route exact path="/dashboard/contribute"
                   element={
-                    <RequireAuth redirectTo="/login">
+                    <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <ContributePage />
-                    </RequireAuth>
+                    </RequireAuthVerified>
                   }
                 />
                 <Route exact path="/dashboard/guidelines"
                   element={
-                    <RequireAuth redirectTo="/login">
+                    <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <GuidelinesPage />
-                    </RequireAuth>
+                    </RequireAuthVerified>
                   }
                 />
                 <Route exact path="/account/profile"
                   element={
-                    <RequireAuth redirectTo="/login">
+                    <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <ProfilePage />
-                    </RequireAuth>
+                    </RequireAuthVerified>
                   }
                 />
                 <Route exact path="/dashboard/statistics"
                   element={
-                    <RequireAuth redirectTo="/login">
+                    <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <StatisticsPage />
-                    </RequireAuth>
+                    </RequireAuthVerified>
                   }
                 />
                 <Route
@@ -109,16 +114,40 @@ function RequireAuthIsReady({ children, loading }) {
   return authIsReady ? children : loading;
 }
 
-function RequireAuth({ children, redirectTo }) {
+function RequireNotAuth({ children, redirectAuth }) {
   const { user } = useAuthContext();
 
-  return user ? children : <Navigate to={redirectTo} />;
+  return !user ? children : <Navigate to={redirectAuth} />;
 }
 
-function RequireNotAuth({ children, redirectTo }) {
+function RequireAuthVerified({ children, redirectNotAuth, redirectNotVerified }) {
   const { user } = useAuthContext();
 
-  return !user ? children : <Navigate to={redirectTo} />;
+  if (user) {
+    if (user.emailVerified) {
+      return children;
+    }
+    else {
+      return <Navigate to={redirectNotVerified} />;
+    }
+  }
+
+  return <Navigate to={redirectNotAuth} />;
+}
+
+function RequireAuthNotVerified({ children, redirectNotAuth, redirectVerified }) {
+  const { user } = useAuthContext();
+
+  if (user) {
+    if (user.emailVerified) {
+      return <Navigate to={redirectVerified} />;
+    }
+    else {
+      return children;
+    }
+  }
+
+  return <Navigate to={redirectNotAuth} />;
 }
 
 export default App;

@@ -1,3 +1,4 @@
+import { NavyLink } from 'components/Shared/NavyLink';
 import { Link } from 'react-router-dom'
 
 export const GuidelineItems = [
@@ -13,7 +14,7 @@ export const GuidelineItems = [
     },
     {
         question: "Πως μπορώ να συνεισφέρω;",
-        answer: <div>Αφού διαβάσετε τις Οδηγίες Χρήσης, μπορείτε να ξεκινήσετε να συνεισφέρετε άμεσα στην καρτέλα <Link to="/dashboard/articles" className="text-navy-400 font-medium hover:underline hover:text-gray-600">Άρθρα</Link>.</div>,
+        answer: <div>Αφού διαβάσετε τις Οδηγίες Χρήσης, μπορείτε να ξεκινήσετε να συνεισφέρετε άμεσα στην καρτέλα <NavyLink className="font-medium" to="/dashboard/articles">Άρθρα</NavyLink>.</div>,
         open: "true"
     },
     {
@@ -109,6 +110,12 @@ export const GuidelineItems = [
                     Συνεπώς, παροτρύνουμε τα μέλη να συνεισφέρουν όσο το δυνατόν ερωτήσεις και απαντήσεις <b>διαφορετικών ειδών</b>.
                 </div>,
         open: ""
+    },
+    {
+        question: "Έχω κι άλλες απορίες. Που μπορώ να απευθυνθώ;",
+        answer: <div>
+                Για <b>οποιαδήποτε απορία</b>, μην διστάσεις να επικοινωνήσεις μαζί μας στη διεύθυνση <NavyLink a className="font-medium" href="mailto:sdi1600152@di.uoa.gr">sdi1600152@di.uoa.gr</NavyLink>
+                </div>,
+        open: ""
     }
-
 ]

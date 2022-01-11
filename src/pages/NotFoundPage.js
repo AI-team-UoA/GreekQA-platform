@@ -1,6 +1,6 @@
 import { ReactComponent as NotFoundSvg } from 'assets/notfound.svg';
 
-import { NavyLink } from 'components/NavyLink';
+import { NavyLink } from 'components/Shared/NavyLink';
 
 export function NotFoundPage() {
     return (

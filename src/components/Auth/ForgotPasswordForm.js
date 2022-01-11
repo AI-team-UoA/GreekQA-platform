@@ -1,18 +1,28 @@
-// import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
-import { Button } from 'components/Button';
-import { Input } from 'components/Input';
-import { NavyLink } from 'components/NavyLink';
+import { Button } from 'components/Shared/Button';
+import { Input } from 'components/Shared/Input';
+import { NavyLink } from 'components/Shared/NavyLink';
 
 export function ForgotPasswordForm() {
-    // const navigate = useNavigate();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = (data, e) => {
+        e.preventDefault();
+    };
+
     return (
         <div>
             <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Επαναφορά Κωδικού</h1>
             <div className="mt-8">
-                <form onSubmit="" className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <span className="text-navy-700 ">Θα σου στείλουμε ένα email για να ορίσεις ένα <b>νέο συνθηματικό</b>, αν υπάρχει λογαριασμός με αυτό το email.</span>
-                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σου (*.uoa.gr)" />
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σου (*.uoa.gr)"
+                        errors={errors.email} register={register("email", { required: "Παρακαλώ συμπλήρωσε το email σου",
+                        pattern: {
+                            message: "Παρακαλώ συμπλήρωσε ένα email που τελειώνει σε .uoa.gr",
+                            value: /^[^@]+@[^@]+\.uoa.gr$/
+                        }})}    
+                    />
                     <Button type="submit">Αποστολή</Button>
                 </form>
                 <div className="relative my-4">
@@ -25,7 +35,7 @@ export function ForgotPasswordForm() {
                 </div>
                 <div className="relative flex justify-center">
                     {/* <button className="text-sm text-navy-400 hover:underline hover:text-gray-600" onClick={() => navigate(-1)}>Πήγαινε πίσω</button> */}
-                    <NavyLink to="/login">Είσοδος στην εφαρμογή (μόνο με email του ΕΚΠΑ)</NavyLink>
+                    <NavyLink className="text-sm" to="/login">Είσοδος στην εφαρμογή (μόνο με email του ΕΚΠΑ)</NavyLink>
                 </div>
             </div>
         </div>

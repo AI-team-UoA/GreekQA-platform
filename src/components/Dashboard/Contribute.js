@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/solid';
 
-import { NavyLink } from 'components/NavyLink';
-import { Input } from 'components/Input';
-import { Button } from 'components/Button';
+import { NavyLink } from 'components/Shared/NavyLink';
+import { Input } from 'components/Shared/Input';
+import { Button } from 'components/Shared/Button';
 
 export function Contribute() {
     var article = {

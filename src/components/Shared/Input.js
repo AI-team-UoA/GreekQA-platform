@@ -12,7 +12,7 @@ export function Input(props) {
                         }
                     </div>
                     <label htmlFor={props.id} className="block text-md font-medium text-navy-600">{props.label}</label>
-                    <input id={props.id} name={props.name} type={props.passwordShown ? "text" : "password"} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} onChange={props.onChange} {...props.disabled ? "disabled" : ""}
+                    <input id={props.id} name={props.name} type={props.passwordShown ? "text" : "password"} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} {...props.disabled ? "disabled" : ""}
                         className={`block w-full mt-1 px-5 py-3 text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
                                     transition duration-300 ease-in-out border-transparent 
                                     focus:border-transparent focus:ring-white focus:ring-offset-2 
@@ -39,7 +39,7 @@ export function Input(props) {
             return (
                 <div>
                     <label htmlFor={props.id} className="block text-md font-medium text-navy-600">{props.label}</label>
-                    <input id={props.id} name={props.name} type={props.type} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} onChange={props.onChange} {...props.disabled ? "disabled" : ""}
+                    <input id={props.id} name={props.name} type={props.type} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} {...props.disabled ? "disabled" : ""}
                         className={`block w-full mt-1 px-5 py-3 text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
                                     transition duration-300 ease-in-out border-transparent 
                                     focus:border-transparent focus:ring-white focus:ring-offset-2 
