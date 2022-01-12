@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
+import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth, firebaseErrors } from 'firebase/config';
-import { updatePassword } from 'firebase/auth';
-import { useAuthContext } from 'hooks/useAuthContext';
 
-export const useChangePassword = () => {
+export const useResetPassword = () => {
   const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
-  const { dispatch } = useAuthContext()
   
-  const changePassword = async (newPassword) => {
+  const resetPassword = async (email) => {
     setError(null)
     setIsPending(true)
 
     try {
-      // Update password
-      await updatePassword(auth.currentUser, newPassword)
-      
-      dispatch({ type: 'LOGIN', payload: auth.currentUser })
+      // Send email verification
+      await sendPasswordResetEmail(auth, email)
       
       // Update state
       if (!isCancelled) {
@@ -37,5 +33,5 @@ export const useChangePassword = () => {
     return () => setIsCancelled(true)
   }, [])
 
-  return { changePassword, error, isPending }
+  return { resetPassword, error, isPending }
 }

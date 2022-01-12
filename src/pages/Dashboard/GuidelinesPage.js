@@ -1,5 +1,5 @@
-import { DashboardLayout } from "layouts/DashboardLayout";
-import { Guidelines } from "components/Dashboard/Guidelines";
+import { DashboardLayout } from 'layouts/DashboardLayout';
+import { Guidelines } from 'components/Dashboard/Guidelines';
 
 export function GuidelinesPage() {
     return (

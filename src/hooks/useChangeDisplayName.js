@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { auth, firebaseErrors } from 'firebase/config'
-import { updateProfile } from 'firebase/auth'
-import { useAuthContext } from 'hooks/useAuthContext'
+import { useEffect, useState } from 'react';
+import { auth, firebaseErrors } from 'firebase/config';
+import { updateProfile } from 'firebase/auth';
+import { useAuthContext } from 'hooks/useAuthContext';
 
 export const useChangeDisplayName = () => {
   const [isCancelled, setIsCancelled] = useState(false)

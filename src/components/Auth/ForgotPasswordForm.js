@@ -1,13 +1,18 @@
 import { useForm } from 'react-hook-form';
+import { useResetPassword } from 'hooks/useResetPassword';
 
-import { Button } from 'components/Shared/Button';
 import { Input } from 'components/Shared/Input';
+import { Button } from 'components/Shared/Button';
 import { NavyLink } from 'components/Shared/NavyLink';
 
+
 export function ForgotPasswordForm() {
+    const { resetPassword, error, isPending } = useResetPassword();
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data, e) => {
         e.preventDefault();
+        resetPassword(data.email);
     };
 
     return (
@@ -23,7 +28,8 @@ export function ForgotPasswordForm() {
                             value: /^[^@]+@[^@]+\.uoa.gr$/
                         }})}    
                     />
-                    <Button type="submit">Αποστολή</Button>
+                    <Button type="submit">{isPending ? 'Αποστολή email...' : 'Αποστολή email'}</Button>
+                    {error && <div className="text-red-500 text-sm">{error}</div>}
                 </form>
                 <div className="relative my-4">
                     <div className="absolute inset-0 flex items-center">

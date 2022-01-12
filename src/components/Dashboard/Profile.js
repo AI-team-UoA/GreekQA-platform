@@ -56,7 +56,7 @@ export function Profile() {
                                                                                                       }})}
                     />
                 </div>
-                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" disabled value={user.email} />
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" value={user.email} disabled />
                     <Button type="submit">{isPendingChangeDisplayName ? 'Αποθήκευση Αλλαγών...' : 'Αποθήκευση Αλλαγών'}</Button>
                     {errorChangeDisplayName && <div className="text-red-500 text-sm">{errorChangeDisplayName}</div>}
             </form>
@@ -76,6 +76,9 @@ export function Profile() {
                                                                                                                 validate: (value) => value === watchPassword('password') || "Τα συνθηματικά δεν ταιριάζουν"
                                                                                                               })}
                 />
+                <p className="text-sm text-gray-500">
+                    Το συνθηματικό σου πρέπει να έχει τουλάχιστον 8 χαρακτήρες και να περιέχει τουλάχιστον ένα σύμβολο και ένα αριθμό χωρίς	ελληνικούς χαρακτήρες.
+                </p>
                 <Button onClick={() => {setPasswordNotShown(); setVerifyPasswordNotShown();}} type="submit">{isPendingChangePassword ? 'Αλλαγή συνθηματικού...' : 'Αλλαγή συνθηματικού'}</Button>
                 {errorChangePassword && <div className="text-red-500 text-sm">{errorChangePassword}</div>}
             </form>

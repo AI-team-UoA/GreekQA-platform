@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import { sendEmailVerification } from 'firebase/auth'
-import { auth, firebaseErrors } from 'firebase/config'
+import { useEffect, useState } from 'react';
+import { sendEmailVerification } from 'firebase/auth';
+import { auth, firebaseErrors } from 'firebase/config';
 
 export const useVerifyEmail = () => {
   const [isCancelled, setIsCancelled] = useState(false)

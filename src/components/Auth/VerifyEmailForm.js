@@ -1,12 +1,11 @@
-import { useAuthContext } from 'hooks/useAuthContext';
-import { useLogout } from 'hooks/useLogout';
-import { NavyLink } from 'components/Shared/NavyLink';
-import { Button } from 'components/Shared/Button';
-
 import { useVerifyEmail } from 'hooks/useVerifyEmail';
+import { useLogout } from 'hooks/useLogout';
+
+import { Button } from 'components/Shared/Button';
+import { NavyLink } from 'components/Shared/NavyLink';
 
 export function VerifyEmailForm() {
-    const { verifyEmail, error: errorVerifyEmail } = useVerifyEmail();
+    const { verifyEmail, error: errorVerifyEmail, isPending: isPendingVerifyEmail } = useVerifyEmail();
     const { logout, isPending: isPendingLogout } = useLogout();
 
     return (
@@ -23,7 +22,7 @@ export function VerifyEmailForm() {
                         <br/><br/>
                         Για <b>οποιοδήποτε πρόβλημα</b> επικοινώνησε μαζί μας στη διεύθυνση <NavyLink a href="mailto:sdi1600152@di.uoa.gr">sdi1600152@di.uoa.gr</NavyLink>
                     </p>
-                    <Button disabled type="submit">Επαναποστολή email</Button>
+                    <Button disabled type="submit">{isPendingVerifyEmail ? 'Επαναποστολή email...' : 'Επαναποστολή email'}</Button>
                 </form>
                 {errorVerifyEmail && <div className="text-red-500 text-sm">{errorVerifyEmail}</div>}
                 <div className="relative my-4">

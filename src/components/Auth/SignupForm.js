@@ -56,7 +56,7 @@ export function SignupForm() {
                     <div className="ml-2 text-sm text-gray-500">
                         Το συνθηματικό σου πρέπει να έχει τουλάχιστον 8 χαρακτήρες και να περιέχει τουλάχιστον ένα σύμβολο και ένα αριθμό χωρίς	ελληνικούς χαρακτήρες.
                     </div>
-                    <Button type="submit" onClick={setPasswordNotShown}>Εγγραφή</Button>
+                    <Button type="submit" onClick={setPasswordNotShown}>{isPending ? 'Εγγραφή...' : 'Εγγραφή'}</Button>
                     {error && <div className="text-red-500 text-sm">{error}</div>}
                 </form>
                 <div className="relative my-4">

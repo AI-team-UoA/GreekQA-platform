@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
+import { getAnalytics, logEvent } from 'firebase/analytics';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth } from "firebase/auth";
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,6 +15,8 @@ const firebaseConfig = {
 }
 
 const firebaseApp = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebaseApp);
+logEvent(analytics, 'notification_received');
 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);

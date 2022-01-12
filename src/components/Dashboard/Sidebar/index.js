@@ -1,7 +1,7 @@
-import { Fragment } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { Menu } from '@headlessui/react'
-import { Transition } from '@headlessui/react'
+import { Fragment } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { Menu } from '@headlessui/react';
+import { Transition } from '@headlessui/react';
 
 import { useAuthContext } from 'hooks/useAuthContext';
 import { useLogout } from 'hooks/useLogout';

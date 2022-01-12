@@ -1,5 +1,4 @@
 import { NavyLink } from 'components/Shared/NavyLink';
-import { Link } from 'react-router-dom'
 
 export const GuidelineItems = [
     {

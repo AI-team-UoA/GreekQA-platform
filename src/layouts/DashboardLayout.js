@@ -1,5 +1,5 @@
-import { Sidebar } from 'components/Dashboard/Sidebar'
-import { MobileSidebar } from 'components/Dashboard/Sidebar/MobileSidebar'
+import { Sidebar } from 'components/Dashboard/Sidebar';
+import { MobileSidebar } from 'components/Dashboard/Sidebar/MobileSidebar';
 
 export function DashboardLayout({ title, content }) {
     return (

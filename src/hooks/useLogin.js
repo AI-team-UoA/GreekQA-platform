@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { auth, firebaseErrors } from 'firebase/config'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { useAuthContext } from 'hooks/useAuthContext'
+import { useState, useEffect } from 'react';
+import { auth, firebaseErrors } from 'firebase/config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuthContext } from 'hooks/useAuthContext';
 
 export const useLogin = () => {
   const [isCancelled, setIsCancelled] = useState(false)

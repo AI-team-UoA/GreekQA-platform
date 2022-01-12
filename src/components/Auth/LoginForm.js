@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { useLogin } from 'hooks/useLogin';
 
 import { Input } from 'components/Shared/Input';
@@ -41,7 +40,7 @@ export function LoginForm() {
                         <Input label="Να με θυμάσαι" id="remember-me" name="remember-me" type="checkbox" />
                         <NavyLink className="text-sm" to="/forgot-password">Έχω ξεχάσει το συνθηματικό μου</NavyLink>
                     </div>
-                    <Button type="submit" onClick={setPasswordNotShown}>Είσοδος</Button>
+                    <Button type="submit" onClick={setPasswordNotShown}>{isPending ? 'Είσοδος...' : 'Είσοδος'}</Button>
                     {error && <div className="text-red-500 text-sm">{error}</div>}
                 </form>
                 <div className="relative my-4">
