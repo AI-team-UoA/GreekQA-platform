@@ -20,8 +20,9 @@ REACT_APP_FIREBASE_STORAGE_BUCKET=
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
 REACT_APP_FIREBASE_APP_ID=
 REACT_APP_FIREBASE_MEASUREMENT_ID=
+REACT_APP_RECAPTCHA_SITE_KEY=
 ```
-**Note:** You will need to setup a Firebase Web App for this step.
+**Note:** You will need to setup a Firebase Web App and reCAPTCHA v3 for this step.
 
 ###
 
@@ -30,25 +31,22 @@ REACT_APP_FIREBASE_MEASUREMENT_ID=
 
 In the project directory, you can:
 
-### 
-
 ### Run the app in the development mode:
 `npm run start`\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+The page will reload if you make edits. You will also see any lint errors in the console.
 
-### `npm test`
 
-#### Launches the test runner in the interactive watch mode.
+
+### Launch the test runner in the interactive watch mode.
+`npm test`\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-#### Builds the app for production to the `build` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.
+### Build the app for production to the `build` folder.
+`npm run build`\
+It correctly bundles React in production mode and optimizes the build for the best performance.\
+The build is minified and the filenames include the hashes. \
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.

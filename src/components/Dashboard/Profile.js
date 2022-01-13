@@ -26,7 +26,6 @@ export function Profile() {
     const { register: registerDisplayName, handleSubmit: handleSubmitDisplayName, formState: { errors: errorsDisplayName } } = useForm();
     const onSubmitDisplayName = (data, e) => {
         e.preventDefault();
-        console.log(data);
         changeDisplayName(data.firstname, data.lastname);
     };
 

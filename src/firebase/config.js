@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 import { getAnalytics, logEvent } from 'firebase/analytics';
-import { getFirestore } from 'firebase/firestore';
+// import { getFirestore } from 'firebase/firestore';
+import { getDatabase } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -15,10 +17,16 @@ const firebaseConfig = {
 }
 
 const firebaseApp = initializeApp(firebaseConfig);
+
+initializeAppCheck(firebaseApp, {
+  provider: new ReCaptchaV3Provider(process.env.REACT_APP_RECAPTCHA_SITE_KEY),
+  isTokenAutoRefreshEnabled: true
+});
+
 const analytics = getAnalytics(firebaseApp);
 logEvent(analytics, 'notification_received');
 
-const db = getFirestore(firebaseApp);
+const db = getDatabase(firebaseApp);
 const auth = getAuth(firebaseApp);
 
 const firebaseErrors = {

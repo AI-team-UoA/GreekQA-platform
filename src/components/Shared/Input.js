@@ -12,7 +12,7 @@ export function Input(props) {
                         }
                     </div>
                     <label htmlFor={props.id} className="block text-md font-medium text-navy-600">{props.label}</label>
-                    <input id={props.id} name={props.name} type={props.passwordShown ? "text" : "password"} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} disabled={props.disabled}
+                    <input id={props.id} name={props.name} type={props.passwordShown ? "text" : "password"} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly}
                         className={`block w-full mt-1 px-5 py-3 text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
                                     transition duration-300 ease-in-out border-transparent 
                                     focus:border-transparent focus:ring-white focus:ring-offset-2 
@@ -26,7 +26,7 @@ export function Input(props) {
         case 'checkbox':
             return (
                 <div className="flex items-center">
-                    <input id={props.id} name={props.name} type={props.type} onChange={props.onChange} disabled={props.disabled}
+                    <input id={props.id} name={props.name} type={props.type} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly}
                         className="w-4 h-4 text-navy-400 border-gray-200 rounded
                                    transition duration-250 ease-in-out
                                    focus:ring-0 focus:ring-offset-0"
@@ -39,7 +39,7 @@ export function Input(props) {
             return (
                 <div>
                     <label htmlFor={props.id} className="block text-md font-medium text-navy-600">{props.label}</label>
-                    <input id={props.id} name={props.name} type={props.type} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} disabled={props.disabled}
+                    <input id={props.id} name={props.name} type={props.type} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly}
                         className={`block w-full mt-1 px-5 py-3 text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
                                     transition duration-300 ease-in-out border-transparent 
                                     focus:border-transparent focus:ring-white focus:ring-offset-2 
