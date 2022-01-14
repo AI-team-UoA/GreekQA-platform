@@ -1,9 +1,9 @@
 export function Button(props) {
     if (!props.link) {
         return (
-            <button {...props} 
-            className="
-                flex
+            <button
+            className={`${props.green  ? 'bg-green-400 hover:bg-green-500' : (props.red ? 'bg-red-400 hover:bg-red-500' : 'bg-navy-400 hover:bg-navy-500')} 
+                ${props.hidden  ? 'hidden' : 'flex'}
                 items-center
                 justify-center
                 w-full
@@ -17,13 +17,11 @@ export function Button(props) {
                 duration-200
                 ease-in-out
                 transform
-                bg-navy-400
                 rounded-xl
-                hover:bg-navy-500
                 focus:outline-none
                 disabled:bg-navy-200
                 disabled:cursor-not-allowed
-            ">
+            `}>
                 {props.children}
             </button>
         );

@@ -1,8 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 import { getAnalytics, logEvent } from 'firebase/analytics';
-// import { getFirestore } from 'firebase/firestore';
-import { getDatabase } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -26,7 +25,7 @@ initializeAppCheck(firebaseApp, {
 const analytics = getAnalytics(firebaseApp);
 logEvent(analytics, 'notification_received');
 
-const db = getDatabase(firebaseApp);
+const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 
 const firebaseErrors = {

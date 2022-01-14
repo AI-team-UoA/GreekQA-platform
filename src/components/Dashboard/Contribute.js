@@ -1,16 +1,52 @@
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { Disclosure } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/solid';
 
 import { db } from 'firebase/config';
-import { get, ref, child, query, orderByChild, orderByValue, equalTo, orderByKey, limitToFirst } from 'firebase/database';
+import { doc, getDoc, getDocs, limit, collection, query, where, collectionGroup, getParent } from 'firebase/firestore';
 
 import { NavyLink } from 'components/Shared/NavyLink';
 import { Input } from 'components/Shared/Input';
 import { Button } from 'components/Shared/Button';
 
+// async function getArticle() {
+//     const articleRef = doc(db, 'data', 'Alexander_Graham_Bell');
+//     const articleSnap = await getDoc(articleRef);
+//     if (articleSnap.exists()) {
+//         console.log("Document data:", articleSnap.data());
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("No such document!");
+//     }      
+// }
+
+async function getArticle() {
+    const articlesRef = collectionGroup(db, 'paragraphs');
+    const q = query(articlesRef, where("completed", '==', "false"),  where("user_assigned", '==', ""), limit(1));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        console.log(doc.id, "=>", doc.data());
+        console.log(doc.ref.parent.parent.id);
+        console.log('FOUND');
+    });
+    console.log('DONE');
+
+    // const articleRef = doc(db, 'data', 'Alexander_Graham_Bell');
+    // const articleSnap = await getDoc(articleRef);
+    // if (articleSnap.exists()) {
+    //     console.log("Document data:", articleSnap.data());
+    // } else {
+    //     // doc.data() will be undefined in this case
+    //     console.log("No such document!");
+    // }      
+}
+
+
 export function Contribute() {
+    getArticle();
+
     var article = {
     "title": "University_of_Notre_Dame",
     "paragraphs": [
@@ -55,6 +91,11 @@ export function Contribute() {
     const [selectedText, setSelectedText] = useState('');
     const [selectionRange, setSelectionRange] = useState({});
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = (data, e) => {
+        e.preventDefault();
+    };
+
     const pushQA = () => {
         let qa = {
             "answers": [
@@ -77,7 +118,7 @@ export function Contribute() {
     }
 
     return (
-        <div className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <h2 className="mb-6 text-3xl font-medium text-navy-600 select-none">
                 Συγγραφή ερωτήσεων/απαντήσεων
             </h2>
@@ -114,20 +155,22 @@ export function Contribute() {
                     </Disclosure>
                 ))}
             </div>
+            <Button red hidden={article.paragraphs[0].qas.length == 0} onClick={popQA()}>Αφαίρεση Ερώτησης</Button>
             <div className="space-y-4">
                 <Input label="Νέα ερώτηση" type="text" placeholder="Γράψε την ερώτηση"></Input>
                 <Input label="Νέα απάντηση" type="text" placeholder="Μάρκαρε την απάντηση στο κείμενο" value={selectedText} readOnly></Input>
             </div>
             {/* {selectionRange.startOffset}<br/>
             {selectionRange.endOffset} */}
-            <div className="grid grid-cols-2 gap-5">
-            <Button className="bg-green-400" onClick={pushQA()}>Προσθήκη Ερώτησης</Button>
-            <Button className="bg-red-400" onClick={popQA()}>Αφαίρεση Ερώτησης</Button>
-            </div>
-            <Button>Καταχώρηση Αλλαγών</Button>
+            {/* <div className="grid grid-cols-2 gap-5"> */}
+                <Button green onClick={pushQA()}>Προσθήκη Ερώτησης</Button>
+                <Button type="submit">Καταχώρηση όλων των ερωτήσεων/απαντήσεων</Button>
+                <b className="text-red-400">Προσοχή:</b> Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
+                
+                {/* {error && <div className="text-red-500 text-sm">{error}</div>} */}
             <div>
-                <NavyLink className="text-lg" to="/dashboard/get-started">Επιστροφή στην εφαρμογή</NavyLink>
+                <NavyLink className="text-md" to="/dashboard/get-started">Επιστροφή στην εφαρμογή</NavyLink>
             </div>
-        </div>
+        </form>
     );
 }

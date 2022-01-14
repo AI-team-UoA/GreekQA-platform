@@ -8,14 +8,14 @@ export function MobileSidebar() {
   const [isOpen, setOpen] = useState(false)
 
   return (
-      <div className="bg-navy-400 h-full flex">
-            <button onClick={() => setOpen((open) => !open)} className="px-2">
+      <div className="bg-navy-400 h-full flex shadow-lg">
+            <button onClick={() => setOpen((open) => !open)} className="pl-4">
                 <span className="sr-only">Open sidebar</span>
-                <MenuIcon className="h-12 w-12 font-bold text-white rounded-md transition duration-200 ease-in-out hover:bg-navy-300 p-2" aria-hidden="true" />
+                <MenuIcon className="h-8 w-8 font-bold text-white rounded-md transition duration-200 ease-in-out hover:bg-navy-300 p-1" aria-hidden="true" />
             </button>
             <h1 className="p-3
             text-left
-            text-3xl
+            text-2xl
             text-white
             tracking-tighter
             select-none
@@ -61,7 +61,7 @@ export function MobileSidebar() {
                         onClick={() => setOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <XIcon className="h-7 w-7" aria-hidden="true" />
+                        <XIcon className="h-8 w-8" aria-hidden="true" />
                       </button>
                     </div>
                   </Transition.Child>
