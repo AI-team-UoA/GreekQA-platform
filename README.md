@@ -1,16 +1,23 @@
 # GreekQA Crowdsourcing Platform
 
+## Tech Stack
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- React.js v17,
+- Tailwindcss v3,
+- Firebase v9 (Authentication, Firestore).
 
-## Run App locally
+## Preparation to run locally
 
-1. Clone project locally:\
+### 1. Clone the project locally:
 `git clone https://github.com/ssiatras/crowdsourcing-platform` 
 
-2. Change to project directory:\
+### 2. Change to project directory:
 `cd crowdsourcing-platform`
 
-3. Open  `.env` file and add your Web App's Firebase configuration variables:\
+### 3. Install dependencies
+`npm install`
+
+### 4. Open  `.env` file and add your Web App's Firebase configuration variables:
 ```
 REACT_APP_FIREBASE_API_KEY=
 REACT_APP_FIREBASE_AUTH_DOMAIN=
@@ -22,7 +29,9 @@ REACT_APP_FIREBASE_APP_ID=
 REACT_APP_FIREBASE_MEASUREMENT_ID=
 REACT_APP_RECAPTCHA_SITE_KEY=
 ```
-**Note:** You will need to setup a Firebase Web App and reCAPTCHA v3 for this step.
+**Note:** For this step, you will also need to:
+- setup a [Firebase Web App](https://firebase.google.com),
+- register for [reCAPTCHA v3](https://www.google.com/recaptcha/about/).
 
 ###
 
@@ -38,15 +47,18 @@ The page will reload if you make edits. You will also see any lint errors in the
 
 
 
-### Launch the test runner in the interactive watch mode.
+### Launch the test runner in the interactive watch mode:
 `npm test`\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 
-### Build the app for production to the `build` folder.
+### Build the app for production to the `build` folder:
 `npm run build`\
 It correctly bundles React in production mode and optimizes the build for the best performance.\
 The build is minified and the filenames include the hashes. \
-Your app is ready to be deployed!
+The app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## License
+This project is available under [the MIT License](https://github.com/ssiatras/crowdsourcing-platform/blob/main/LICENSE).
