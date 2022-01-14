@@ -9,10 +9,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Preparation to run locally
 
 ### 1. Clone the project locally:
-`git clone https://github.com/ssiatras/crowdsourcing-platform` 
+`git clone https://github.com/ssiatras/greekqa-crowdsourcing-platform` 
 
 ### 2. Change to project directory:
-`cd crowdsourcing-platform`
+`cd greekqa-crowdsourcing-platform`
 
 ### 3. Install dependencies
 `npm install`
@@ -31,10 +31,7 @@ REACT_APP_RECAPTCHA_SITE_KEY=
 ```
 **Note:** For this step, you will also need to:
 - setup a [Firebase Web App](https://firebase.google.com),
-- register for [reCAPTCHA v3](https://www.google.com/recaptcha/about/).
-
-###
-
+- register for [reCAPTCHA v3](https://www.google.com/recaptcha/about).
 
 ## Available Scripts
 
@@ -45,12 +42,9 @@ In the project directory, you can:
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
 The page will reload if you make edits. You will also see any lint errors in the console.
 
-
-
 ### Launch the test runner in the interactive watch mode:
 `npm test`\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 
 ### Build the app for production to the `build` folder:
 `npm run build`\
