@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### 2. Change to project directory:
 `cd greekqa-crowdsourcing-platform`
 
-### 3. Install dependencies
+### 3. Install dependencies:
 `npm install`
 
 ### 4. Edit `.env.local` file and add your Web App's Firebase configuration variables:
@@ -32,7 +32,7 @@ REACT_APP_RECAPTCHA_SITE_KEY=
 #### Note 
 For this step, you need to contact one of the supervisors of the project to get the configuration variables.\
 Alternatively, you need to:
-- setup your own [Firebase Web App](https://firebase.google.com) including Authentication and Firestore,
+- setup your own [Firebase Web App](https://firebase.google.com) (including Authentication and Firestore),
 - register for [reCAPTCHA v3](https://www.google.com/recaptcha/about).
 
 ## Available Scripts
