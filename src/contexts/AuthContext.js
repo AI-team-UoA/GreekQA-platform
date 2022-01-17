@@ -2,7 +2,7 @@ import { createContext, useReducer, useEffect } from 'react';
 import { auth } from 'firebase/config';
 import { onAuthStateChanged } from 'firebase/auth';
 
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
 export const authReducer = (state, action) => {
   switch (action.type) {
@@ -29,8 +29,6 @@ export const AuthContextProvider = ({ children }) => {
       unsub();
     })
   }, [])
-
-  // console.log('AuthContext state:', state)
   
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

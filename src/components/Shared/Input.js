@@ -26,10 +26,11 @@ export function Input(props) {
         case 'checkbox':
             return (
                 <div className="flex items-center">
-                    <input id={props.id} name={props.name} type={props.type} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly}
+                    <input id={props.id} name={props.name} type={props.type} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly} checked={props.checked} defaultChecked={props.defaultChecked}
                         className="w-4 h-4 text-navy-400 border-gray-200 rounded
                                    transition duration-250 ease-in-out
                                    focus:ring-0 focus:ring-offset-0"
+                        {...props.register}
                     />
                     <label htmlFor={props.name} className="block ml-2 text-sm text-navy-900 select-none">{props.label}</label>
                 </div>

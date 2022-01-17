@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 
-import { useAuthContext } from './hooks/useAuthContext';
+import { useAuthContext } from 'hooks/useAuthContext';
+import { useFirestoreContext} from 'hooks/useFirestoreContext';
 
 import { LoginPage } from 'pages/Auth/LoginPage';
 import { SignupPage } from 'pages/Auth/SignupPage';
 import { ForgotPasswordPage } from 'pages/Auth/ForgotPasswordPage';
 import { VerifyEmailPage } from 'pages/Auth/VerifyEmailPage';
 import { GetStartedPage } from 'pages/Dashboard/GetStartedPage';
-import { ContributePage } from 'pages/Dashboard/ContributePage';
+import { ContributePage } from 'pages/ContributePage';
 import { GuidelinesPage } from 'pages/Dashboard/GuidelinesPage';
 import { ProfilePage } from 'pages/Dashboard/ProfilePage';
 import { StatisticsPage } from 'pages/Dashboard/StatisticsPage';
@@ -57,13 +58,6 @@ function App() {
                     </RequireAuthVerified>
                   }
                 />
-                <Route exact path="/dashboard/contribute"
-                  element={
-                    <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
-                      <ContributePage />
-                    </RequireAuthVerified>
-                  }
-                />
                 <Route exact path="/dashboard/guidelines"
                   element={
                     <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
@@ -85,6 +79,15 @@ function App() {
                     </RequireAuthVerified>
                   }
                 />
+                <RequireReadDocument loading={<LoadingPage/>}>
+                  <Route exact path="/contribute"
+                    element={
+                      <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
+                        <ContributePage />
+                      </RequireAuthVerified>
+                    }
+                  />
+                </RequireReadDocument>
                 <Route
                   path="/"
                   element={<Navigate to="/dashboard/get-started" />}
@@ -112,6 +115,12 @@ function RequireAuthIsReady({ children, loading }) {
   const { authIsReady } = useAuthContext();
 
   return authIsReady ? children : loading;
+}
+
+function RequireReadDocument({ children, loading }) {
+  const { readDocument } = useFirestoreContext();
+
+  return readDocument ? children : loading;
 }
 
 function RequireNotAuth({ children, redirectAuth }) {

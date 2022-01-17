@@ -16,7 +16,7 @@ export function LoginForm() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data, e) => {
         e.preventDefault();
-        login(data.email, data.password);
+        login(data.email, data.password, data.remember);
     };
 
     return (
@@ -37,7 +37,7 @@ export function LoginForm() {
                                 
                     />
                     <div className="flex items-center justify-between">
-                        <Input label="Να με θυμάσαι" id="remember-me" name="remember-me" type="checkbox" />
+                        <Input label="Να με θυμάσαι" id="remember" name="remember" type="checkbox" defaultChecked={true} register={register("remember")}/>
                         <NavyLink className="text-sm" to="/forgot-password">Έχω ξεχάσει το συνθηματικό μου</NavyLink>
                     </div>
                     <Button type="submit" onClick={setPasswordNotShown}>{isPending ? 'Είσοδος...' : 'Είσοδος'}</Button>

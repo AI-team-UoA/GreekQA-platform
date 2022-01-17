@@ -17,7 +17,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### 3. Install dependencies
 `npm install`
 
+<<<<<<< Updated upstream
 ### 4. Create  `.env.local` file and add your Web App's Firebase configuration variables:
+=======
+### 4. Open  `.env` file and fill in the Web App's Firebase configuration variables:
+>>>>>>> Stashed changes
 ```
 REACT_APP_FIREBASE_API_KEY=
 REACT_APP_FIREBASE_AUTH_DOMAIN=
@@ -29,8 +33,10 @@ REACT_APP_FIREBASE_APP_ID=
 REACT_APP_FIREBASE_MEASUREMENT_ID=
 REACT_APP_RECAPTCHA_SITE_KEY=
 ```
-**Note:** For this step, you will also need to:
-- setup a [Firebase Web App](https://firebase.google.com),
+#### Note 
+For this step, you need to contact one of the supervisors of the project to get the configuration variables.\
+Alternatively, you need to:
+- setup your own [Firebase Web App](https://firebase.google.com) including Authentication and Firestore,
 - register for [reCAPTCHA v3](https://www.google.com/recaptcha/about).
 
 ## Available Scripts
