@@ -17,11 +17,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### 3. Install dependencies
 `npm install`
 
-<<<<<<< Updated upstream
-### 4. Create  `.env.local` file and add your Web App's Firebase configuration variables:
-=======
-### 4. Open  `.env` file and fill in the Web App's Firebase configuration variables:
->>>>>>> Stashed changes
+### 4. Edit `.env.local` file and add your Web App's Firebase configuration variables:
 ```
 REACT_APP_FIREBASE_API_KEY=
 REACT_APP_FIREBASE_AUTH_DOMAIN=
