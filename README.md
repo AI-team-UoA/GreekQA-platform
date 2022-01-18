@@ -29,7 +29,7 @@ REACT_APP_FIREBASE_APP_ID=
 REACT_APP_FIREBASE_MEASUREMENT_ID=
 REACT_APP_RECAPTCHA_SITE_KEY=
 ```
-#### Note 
+#### Note:
 For this step, you need to contact one of the supervisors of the project to get the configuration variables.\
 Alternatively, you need to:
 - setup your own [Firebase Web App](https://firebase.google.com) (including Authentication and Firestore),
