@@ -14,13 +14,13 @@ export function VerifyEmailForm() {
             <div className="mt-8">
                 <form onSubmit={() => verifyEmail()} className="space-y-6">
                     <p className="text-navy-700">
-                        Σου έχουμε στείλει ένα email για να <b>επιβεβαιώσεις</b> την διεύθυνση email σου.
+                        Σας έχουμε στείλει ένα email για να <b>επιβεβαιώσετε</b> την διεύθυνση email σας.
                         <br/><br/>
-                        H αποστολή του email  <b>μπορεί να καθυστερήσει</b> μερικά λεπτά (συνήθως αποστέλλεται άμεσα).
+                        H αποστολή του email <b>μπορεί να καθυστερήσει</b> μερικά λεπτά (συνήθως αποστέλλεται άμεσα).
                         <br/><br/>
-                        <b>Αφού επιβεβαιώσεις</b> τον λογαριασμό σου, παρακαλώ <b>ανανεώσε</b> την παρούσα σελίδα.
+                        <b>Αφού επιβεβαιώσετε</b> τον λογαριασμό σας, παρακαλώ <b>ανανεώστε</b> την παρούσα σελίδα.
                         <br/><br/>
-                        Για <b>οποιοδήποτε πρόβλημα</b> επικοινώνησε μαζί μας στη διεύθυνση <NavyLink a href="mailto:sdi1600152@di.uoa.gr">sdi1600152@di.uoa.gr</NavyLink>
+                        Για <b>οποιοδήποτε πρόβλημα</b> επικοινωνήστε μαζί μας στη διεύθυνση <NavyLink a href="mailto:sdi1600152@di.uoa.gr">sdi1600152@di.uoa.gr</NavyLink>
                     </p>
                     <Button disabled type="submit">{isPendingVerifyEmail ? 'Επαναποστολή email...' : 'Επαναποστολή email'}</Button>
                 </form>
@@ -30,7 +30,7 @@ export function VerifyEmailForm() {
                         <div className="w-full border-t border-navy-300" />
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="px-2 bg-white text-navy-900 select-none">Θες να αποσυνδεθείς;</span>
+                        <span className="px-2 bg-white text-navy-900 select-none">Θέλετε να αποσυνδεθείτε;</span>
                     </div>
                 </div>
                 <div className="relative flex justify-center">

@@ -1,13 +1,30 @@
 import { useReducer, useEffect, useState } from 'react';
-import { doc, getDoc, getDocs, limit, collection, query, where, collectionGroup, getParent } from 'firebase/firestore';
 import { db } from 'firebase/config';
-import { useFirestoreContext } from 'hooks/useFirestoreContext';
+import { collectionGroup, query, where, limit, getDocs } from 'firebase/firestore';
+
+const firestoreReducer = (state, action) => {
+  switch (action.type) {
+    case 'IS_PENDING':
+      return { isPending: true, document: null, success: false, error: null }
+    case 'READ_DOCUMENT':
+      return { isPending: false, document: action.payload, success: true, error: null }
+    case "UPDATED_DOCUMENT":
+      return { isPending: false, document: action.payload, success: true,  error: null }
+    case 'ERROR':
+      return { isPending: false, document: null, success: false, error: action.payload }
+    default:
+      return state
+  }
+}
 
 export const useFirestore = () => {
+  const [response, dispatch] = useReducer(firestoreReducer, {
+    document: null,
+    isPending: false,
+    error: null,
+    success: null,
+  })
   const [isCancelled, setIsCancelled] = useState(false);
-  const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(false);
-  const { response, dispatch } = useFirestoreContext();
 
   const paragraphsRef = collectionGroup(db, 'paragraphs');
 
@@ -29,10 +46,12 @@ export const useFirestore = () => {
           title = doc.ref.parent.parent.id;
           paragraph = doc.data();
       });
+
       dispatchIfNotCancelled({ type: 'READ_DOCUMENT', payload: { title, paragraph } });
     }
     catch (err) {
-      dispatchIfNotCancelled({ type: 'ERROR', payload: err.message })
+
+      dispatchIfNotCancelled({ type: 'ERROR', payload: err.message });
     }
   }
 

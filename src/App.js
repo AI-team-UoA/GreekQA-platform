@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 
 import { useAuthContext } from 'hooks/useAuthContext';
-import { useFirestoreContext} from 'hooks/useFirestoreContext';
 
 import { LoginPage } from 'pages/Auth/LoginPage';
 import { SignupPage } from 'pages/Auth/SignupPage';
@@ -79,15 +78,13 @@ function App() {
                     </RequireAuthVerified>
                   }
                 />
-                <RequireReadDocument loading={<LoadingPage/>}>
-                  <Route exact path="/contribute"
-                    element={
-                      <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
-                        <ContributePage />
-                      </RequireAuthVerified>
-                    }
-                  />
-                </RequireReadDocument>
+                <Route exact path="/contribute"
+                  element={
+                    <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
+                      <ContributePage />
+                    </RequireAuthVerified>
+                  }
+                />
                 <Route
                   path="/"
                   element={<Navigate to="/dashboard/get-started" />}
@@ -115,12 +112,6 @@ function RequireAuthIsReady({ children, loading }) {
   const { authIsReady } = useAuthContext();
 
   return authIsReady ? children : loading;
-}
-
-function RequireReadDocument({ children, loading }) {
-  const { readDocument } = useFirestoreContext();
-
-  return readDocument ? children : loading;
 }
 
 function RequireNotAuth({ children, redirectAuth }) {

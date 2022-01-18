@@ -24,37 +24,37 @@ export function SignupForm() {
             <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Εγγραφή στο GreekQA</h1>
             <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <Input label="Όνομα" id="firstname" name="firstname" type="text" autoComplete="given-name" placeholder="Το όνομά σου (π.χ. ΙΩΑΝΝΗΣ)"
-                        errors={errors.firstname} register={register("firstname", { required: "Παρακαλώ συμπλήρωσε το όνομά σου",
+                    <Input label="Όνομα" id="firstname" name="firstname" type="text" autoComplete="given-name" placeholder="Το όνομά σας (π.χ. ΙΩΑΝΝΗΣ)"
+                        errors={errors.firstname} register={register("firstname", { required: "Παρακαλώ συμπληρώστε το όνομά σας",
                                                                                     pattern: {
-                                                                                        message: "Παρακαλώ συμπλήρωσε το όνομα σου χωρίς κενά (διπλά ονόματα με παύλα)",
+                                                                                        message: "Παρακαλώ συμπληρώστε το όνομα σας χωρίς κενά (διπλά ονόματα με παύλα)",
                                                                                         value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ]+$/
                                                                                   }})}
                     />
-                    <Input label="Επώνυμο" id="lastname" name="lastname" type="text" autoComplete="family-name" placeholder="Το επώνυμό σου (π.χ. ΠΑΠΑΔΟΠΟΥΛΟΣ)"
-                        errors={errors.lastname} register={register("lastname", {   required: "Παρακαλώ συμπλήρωσε το επώνυμό σου",
+                    <Input label="Επώνυμο" id="lastname" name="lastname" type="text" autoComplete="family-name" placeholder="Το επώνυμό σας (π.χ. ΠΑΠΑΔΟΠΟΥΛΟΣ)"
+                        errors={errors.lastname} register={register("lastname", {   required: "Παρακαλώ συμπληρώστε το επώνυμό σας",
                                                                                     pattern: {
-                                                                                        message: "Παρακαλώ συμπλήρωσε το επώνυμό σου χωρίς κενά (διπλά ονόματα με παύλα)",
+                                                                                        message: "Παρακαλώ συμπληρώστε το επώνυμό σας χωρίς κενά (διπλά επώνυμα με παύλα)",
                                                                                         value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ]+$/
                                                                                 }})}
                     />
-                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σου (*.uoa.gr)"
-                        errors={errors.email} register={register("email", { required: "Παρακαλώ συμπλήρωσε το email σου",
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*.uoa.gr)"
+                        errors={errors.email} register={register("email", { required: "Παρακαλώ συμπληρώστε το email σας",
                                                                             pattern: {
-                                                                                message: "Παρακαλώ συμπλήρωσε ένα email που τελειώνει σε .uoa.gr",
+                                                                                message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε .uoa.gr",
                                                                                 value: /^[^@]+@[^@]+\.uoa.gr$/
                                                                             }})}
                     />
-                    <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="new-password" placeholder="To συνθηματικό σου"
+                    <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="new-password" placeholder="To συνθηματικό σας"
                         passwordShown={passwordShown} togglePasswordVisibility={togglePasswordVisibility}
-                        errors={errors.password} register={register("password", {   required: "Παρακαλώ συμπλήρωσε το συνθηματικό σου",
+                        errors={errors.password} register={register("password", {   required: "Παρακαλώ συμπληρώστε το συνθηματικό σας",
                                                                                     pattern: {
-                                                                                        message: "Παρακαλώ συμπλήρωσε ένα έγκυρο συνθηματικό",
+                                                                                        message: "Παρακαλώ συμπληρώστε ένα έγκυρο συνθηματικό",
                                                                                         value: /^(?=.*[A-Za-zΑ-Ωα-ω])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
                                                                                 }})}
                     />
                     <div className="ml-2 text-sm text-gray-500">
-                        Το συνθηματικό σου πρέπει να έχει τουλάχιστον 8 χαρακτήρες και να περιέχει τουλάχιστον ένα σύμβολο και ένα αριθμό χωρίς	ελληνικούς χαρακτήρες.
+                        Το συνθηματικό σας πρέπει να έχει τουλάχιστον 8 χαρακτήρες και να περιέχει τουλάχιστον ένα σύμβολο και ένα αριθμό χωρίς	ελληνικούς χαρακτήρες.
                     </div>
                     <Button type="submit" onClick={setPasswordNotShown}>{isPending ? 'Εγγραφή...' : 'Εγγραφή'}</Button>
                     {error && <div className="text-red-500 text-sm">{error}</div>}
@@ -64,7 +64,7 @@ export function SignupForm() {
                         <div className="w-full border-t border-navy-400" />
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="px-2 bg-white text-gray-700 select-none">Έχεις ήδη λογαριασμό;</span>
+                        <span className="px-2 bg-white text-gray-700 select-none">Έχετε ήδη λογαριασμό;</span>
                     </div>
                 </div>
                 <div className="relative flex justify-center">

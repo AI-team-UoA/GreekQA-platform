@@ -20,11 +20,11 @@ export function ForgotPasswordForm() {
             <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Επαναφορά Κωδικού</h1>
             <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <span className="text-navy-700 ">Θα σου στείλουμε ένα email για να ορίσεις ένα <b>νέο συνθηματικό</b>, αν υπάρχει λογαριασμός με αυτό το email.</span>
-                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σου (*.uoa.gr)"
-                        errors={errors.email} register={register("email", { required: "Παρακαλώ συμπλήρωσε το email σου",
+                    <span className="text-navy-700 ">Θα σας στείλουμε ένα email για να ορίσετε ένα <b>νέο συνθηματικό</b>, αν υπάρχει λογαριασμός με αυτό το email.</span>
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*.uoa.gr)"
+                        errors={errors.email} register={register("email", { required: "Παρακαλώ συμπληρώστε το email σας",
                         pattern: {
-                            message: "Παρακαλώ συμπλήρωσε ένα email που τελειώνει σε .uoa.gr",
+                            message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε .uoa.gr",
                             value: /^[^@]+@[^@]+\.uoa.gr$/
                         }})}    
                     />
@@ -36,7 +36,7 @@ export function ForgotPasswordForm() {
                         <div className="w-full border-t border-navy-300" />
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="px-2 bg-white text-navy-900 select-none">Άλλαξες γνώμη;</span>
+                        <span className="px-2 bg-white text-navy-900 select-none">Αλλάξατε γνώμη;</span>
                     </div>
                 </div>
                 <div className="relative flex justify-center">

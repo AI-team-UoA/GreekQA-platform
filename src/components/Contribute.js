@@ -131,17 +131,15 @@ export function Contribute() {
             </h2>
             <div className="p-6 rounded-lg shadow-lg">
                 <h3 className="mb-6 text-xl">
-                    <span className="font-medium select-none">Τίτλος Άρθρου: </span>{response.document.title}
-                    <br />
-                    <span className="font-medium select-none">Παράγραφος: </span>1 από τις 15
+                    <span className="font-medium select-none">Τίτλος Άρθρου: </span>{response.document != null ? response.document.title : 'Φόρτωση...'}
                 </h3>
                 <p className="text-md text-left" onMouseUp={() => {setSelectedText(window.getSelection().toString()); setSelectionRange(window.getSelection().getRangeAt(0))}} onTouchEnd={() => setSelectedText(window.getSelection().toString())}>
-                    <span className="font-medium text-xl select-none">Κείμενο:</span><br />
-                    {article.paragraphs[0].context}
+                    <span className="font-medium text-xl select-none">Παράγραφος:</span><br />
+                    {response.document != null ? response.document.paragraph.context : 'Φόρτωση...'}
                 </p>
             </div>
             <div className="my-6">
-                {response.document.paragraph.qas.map((qa, index) => (
+                {response.document != null ? response.document.paragraph.qas.map((qa, index) => (
                     <Disclosure key={index} as="div" className="my-2 pt-2">
                     {({ open }) => (
                         <>
@@ -160,7 +158,7 @@ export function Contribute() {
                         </>
                     )}
                     </Disclosure>
-                ))}
+                )) : 'Φόρτωση...'}
             </div>
             <Button red hidden={article.paragraphs[0].qas.length === 0} onClick={(article) => popQA(article)}>Αφαίρεση Ερώτησης</Button>
             <div className="space-y-4">

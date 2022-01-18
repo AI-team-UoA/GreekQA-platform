@@ -40,17 +40,17 @@ export function Profile() {
             <form onSubmit={handleSubmitDisplayName(onSubmitDisplayName)} className="p-6 max-w-3xl space-y-6 shadow-lg rounded-lg">
                 <h3 className="mb-6 text-xl font-medium text-navy-600 select-none">Τα στοιχεία μου</h3>
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                    <Input label="Όνομα" id="firstname" name="firstname" type="text" autoComplete="given-name" placeholder="Το όνομά σου (π.χ. ΙΩΑΝΝΗΣ)" defaultValue={currentFirstname}
-                        errors={errorsDisplayName.firstname} register={registerDisplayName("firstname", {   required: "Παρακαλώ συμπλήρωσε το όνομά σου",
+                    <Input label="Όνομα" id="firstname" name="firstname" type="text" autoComplete="given-name" placeholder="Το όνομά σας (π.χ. ΙΩΑΝΝΗΣ)" defaultValue={currentFirstname}
+                        errors={errorsDisplayName.firstname} register={registerDisplayName("firstname", {   required: "Παρακαλώ συμπληρώστε το όνομά σας",
                                                                                                             pattern: {
-                                                                                                                message: "Παρακαλώ συμπλήρωσε το όνομα σου χωρίς κενά (διπλά ονόματα με παύλα)",
+                                                                                                                message: "Παρακαλώ συμπληρώστε το όνομα σας χωρίς κενά (διπλά ονόματα με παύλα)",
                                                                                                                 value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ]+$/
                                                                                                         }})}
                     />
-                    <Input label="Επώνυμο" id="lastname" name="lastname" type="text" autoComplete="family-name" placeholder="Το επώνυμό σου (π.χ. ΠΑΠΑΔΟΠΟΥΛΟΣ)" defaultValue={currentLastname}
-                        errors={errorsDisplayName.lastname} register={registerDisplayName("lastname", { required: "Παρακαλώ συμπλήρωσε το επώνυμό σου",
+                    <Input label="Επώνυμο" id="lastname" name="lastname" type="text" autoComplete="family-name" placeholder="Το επώνυμό σας (π.χ. ΠΑΠΑΔΟΠΟΥΛΟΣ)" defaultValue={currentLastname}
+                        errors={errorsDisplayName.lastname} register={registerDisplayName("lastname", { required: "Παρακαλώ συμπληρώστε το επώνυμό σας",
                                                                                                         pattern: {
-                                                                                                            message: "Παρακαλώ συμπλήρωσε το επώνυμό σου χωρίς κενά (διπλά ονόματα με παύλα)",
+                                                                                                            message: "Παρακαλώ συμπληρώστε το επώνυμό σας χωρίς κενά (διπλά επώνυμα με παύλα)",
                                                                                                             value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ]+$/
                                                                                                       }})}
                     />
@@ -61,22 +61,22 @@ export function Profile() {
             </form>
             <form onSubmit={handleSubmitPassword(onSubmitPassword)} className="p-6 max-w-3xl space-y-8 shadow-lg rounded-lg">
                 <h3 className="mb-6 text-xl font-medium text-navy-600 select-none">Αλλαγή συνθηματικού</h3>
-                <Input label="Νέο Συνθηματικό" id="password" name="password" type="password" autoComplete="new-password" placeholder="To νέο συνθηματικό σου"
+                <Input label="Νέο Συνθηματικό" id="password" name="password" type="password" autoComplete="new-password" placeholder="To νέο συνθηματικό σας"
                         passwordShown={passwordShown} togglePasswordVisibility={togglePasswordVisibility}
-                        errors={errorsPassword.password} register={registerPassword("password", {   required: "Παρακαλώ συμπλήρωσε το νέο συνθηματικό σου",
+                        errors={errorsPassword.password} register={registerPassword("password", {   required: "Παρακαλώ συμπληρώστε το νέο συνθηματικό σας",
                                                                                     pattern: {
-                                                                                        message: "Παρακαλώ συμπλήρωσε ένα νέο έγκυρο συνθηματικό",
+                                                                                        message: "Παρακαλώ συμπληρώστε ένα νέο έγκυρο συνθηματικό",
                                                                                         value: /^(?=.*[A-Za-zΑ-Ωα-ω])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
                                                                                 }})}
                 />
-                <Input label="Επιβεβαίωση νέου συνθηματικού" id="passwordConfirm" name="passwordConfirm" type="password" autoComplete="new-password" placeholder="Τo νέο συνθηματικό σου πάλι"
+                <Input label="Επιβεβαίωση νέου συνθηματικού" id="passwordConfirm" name="passwordConfirm" type="password" autoComplete="new-password" placeholder="Τo νέο συνθηματικό σας ξανά"
                         passwordShown={verifyPasswordShown} togglePasswordVisibility={toggleVerifyPasswordVisibility}
-                        errors={errorsPassword.passwordConfirm} register={registerPassword("passwordConfirm", { required: "Παρακαλώ συμπλήρωσε ξανά το νέο συνθηματικό σου",
+                        errors={errorsPassword.passwordConfirm} register={registerPassword("passwordConfirm", { required: "Παρακαλώ συμπληρώστε ξανά το νέο συνθηματικό σας",
                                                                                                                 validate: (value) => value === watchPassword('password') || "Τα συνθηματικά δεν ταιριάζουν"
                                                                                                               })}
                 />
                 <p className="text-sm text-gray-500">
-                    Το συνθηματικό σου πρέπει να έχει τουλάχιστον 8 χαρακτήρες και να περιέχει τουλάχιστον ένα σύμβολο και ένα αριθμό χωρίς	ελληνικούς χαρακτήρες.
+                    Το συνθηματικό σας πρέπει να έχει τουλάχιστον 8 χαρακτήρες και να περιέχει τουλάχιστον ένα σύμβολο και ένα αριθμό χωρίς	ελληνικούς χαρακτήρες.
                 </p>
                 <Button onClick={() => {setPasswordNotShown(); setVerifyPasswordNotShown();}} type="submit">{isPendingChangePassword ? 'Αλλαγή συνθηματικού...' : 'Αλλαγή συνθηματικού'}</Button>
                 {errorChangePassword && <div className="text-red-500 text-sm">{errorChangePassword}</div>}

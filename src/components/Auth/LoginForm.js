@@ -24,16 +24,16 @@ export function LoginForm() {
             <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Είσοδος στο GreekQA</h1>
             <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σου (*.uoa.gr)"
-                        errors={errors.email} register={register("email", { required: "Παρακαλώ συμπλήρωσε το email σου",
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*.uoa.gr)"
+                        errors={errors.email} register={register("email", { required: "Παρακαλώ συμπληρώστε το email σας",
                                                                             pattern: {
-                                                                                message: "Παρακαλώ συμπλήρωσε ένα email που τελειώνει σε .uoa.gr",
+                                                                                message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε .uoa.gr",
                                                                                 value: /^[^@]+@[^@]+\.uoa.gr$/
                                                                             }})}
                     />
-                    <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="current-password" placeholder="To συνθηματικό σου"
+                    <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="current-password" placeholder="To συνθηματικό σας"
                         passwordShown={passwordShown} togglePasswordVisibility={togglePasswordVisibility}
-                        errors={errors.password} register={register("password", { required: "Παρακαλώ συμπλήρωσε το συνθηματικό σου" })}
+                        errors={errors.password} register={register("password", { required: "Παρακαλώ συμπληρώστε το συνθηματικό σας" })}
                                 
                     />
                     <div className="flex items-center justify-between">
@@ -52,7 +52,7 @@ export function LoginForm() {
                     </div>
                 </div>
                 <div className="relative flex justify-center">
-                    <NavyLink className="text-sm" to="/signup">Γίνε μέλος (μόνο με email του ΕΚΠΑ)</NavyLink>
+                    <NavyLink className="text-sm" to="/signup">Εγγραφή στην εφαρμογή (μόνο με email του ΕΚΠΑ)</NavyLink>
                 </div>
             </div>
         </div>
