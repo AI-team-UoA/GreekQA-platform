@@ -33,10 +33,23 @@ export function Contribute() {
     const [selectedText, setSelectedText] = useState('');
     const [selectionRange, setSelectionRange] = useState({});
 
-    const { register: registerQA, handleSubmit: handleSubmitQA, formState: { errors: errorsQA } } = useForm();
+    const { register: registerQA, resetField: resetFieldQA, handleSubmit: handleSubmitQA, formState: { errors: errorsQA } } = useForm();
     const onSubmitQA = (data, e) => {
         e.preventDefault();
-        pushQA(data.question, data.answer);
+        var newQA = {
+            question: data.question,        
+            answers: [
+                {
+                    answer_start: selectionRange.startOffset,
+                    text: selectedText
+                }
+            ]
+        }
+        console.log("NEW QA", newQA);
+        pushQA(newQA);
+        // resetFieldQA("question");
+        // setSelectedText('');
+        // setSelectionRange({});
     };
 
     
@@ -46,7 +59,7 @@ export function Contribute() {
     };
 
     return (
-        <form onSubmit={handleSubmitParagraph(onSubmitParagraph)} className="space-y-6">
+        <div className="space-y-6">
             <h2 className="mb-6 text-3xl font-medium text-navy-600 select-none">
                 Συγγραφή ερωτήσεων/απαντήσεων
             </h2>
@@ -83,21 +96,29 @@ export function Contribute() {
                 )) : 'Φόρτωση...'}
             </div>
             <form onSubmit={handleSubmitQA(onSubmitQA)} className="space-y-4">
-                <Input label="Νέα ερώτηση" id="question" name="question" type="text" placeholder="Γράψε την ερώτηση"></Input>
-                <Input label="Νέα απάντηση" id="answer" name="answer" type="text" placeholder="Μάρκαρε την απάντηση στο κείμενο" value={selectedText} readOnly></Input>
+                <Input label="Νέα ερώτηση" id="question" name="question" type="text" placeholder="Γράψτε την ερώτηση" autocomplete="off"
+                       errors={errorsQA}  register={registerQA("question", {    required: "Παρακαλώ συμπληρώστε μια ερώτηση",
+                                                                                    pattern: {
+                                                                                    message: "Παρακαλώ συμπληρώστε μια ερώτηση μόνο στα ελληνικά που να τελείωνει με ';'",
+                                                                                    value:  /^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]{8};$/
+                                                                                }
+                                                                            })}
+                />
+                <Input label="Νέα απάντηση" id="answer" name="answer" type="text" placeholder="Μάρκαρετε την απάντηση στο κείμενο" value={selectedText} readOnly register={registerQA("answer")}
+                />
             
             {/* {selectionRange.startOffset}<br/>
             {selectionRange.endOffset} */}
             {/* <div className="grid grid-cols-2 gap-5"> */}
-                <button submit onClick={(question, answer) => pushQA(question, answer)}>Προσθήκη Ερώτησης</button>
+                <Button type="submit">Προσθήκη Ερώτησης</Button>
             </form>
+            <form onSubmit={handleSubmitParagraph(onSubmitParagraph)} className="space-y-6">
                 <Button type="submit">Καταχώρηση όλων των ερωτήσεων/απαντήσεων</Button>
                 <b className="select-none text-red-400">Προσοχή: </b>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
 
                 {/* {error && <div className="text-red-500 text-sm">{error}</div>} */}
-            <div>
+            </form>
                 <NavyLink className="text-md" to="/dashboard/get-started">Επιστροφή στην εφαρμογή</NavyLink>
-            </div>
-        </form>
+        </div>
     );
 }
