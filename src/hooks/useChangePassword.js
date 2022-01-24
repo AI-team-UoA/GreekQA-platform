@@ -6,6 +6,7 @@ import { useAuthContext } from 'hooks/useAuthContext';
 export const useChangePassword = () => {
   const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
   const [isPending, setIsPending] = useState(false)
   const { dispatch } = useAuthContext()
   
@@ -23,10 +24,12 @@ export const useChangePassword = () => {
       if (!isCancelled) {
         setIsPending(false)
         setError(null)
+        setSuccess(true)
       } 
     }
     catch(err) {
       if (!isCancelled) {
+        setSuccess(null)
         setError(firebaseErrors[err.code])
         setIsPending(false)
       }
@@ -37,5 +40,5 @@ export const useChangePassword = () => {
     return () => setIsCancelled(true)
   }, [])
 
-  return { changePassword, error, isPending }
+  return { changePassword, error, success, isPending }
 }
