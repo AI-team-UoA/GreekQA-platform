@@ -1,7 +1,7 @@
 export function Button(props) {
     if (!props.link) {
         return (
-            <button
+            <button onClick={props.onClick}
             className={`${props.green  ? 'bg-green-400 hover:bg-green-500' : (props.red ? 'bg-red-400 hover:bg-red-500' : 'bg-navy-400 hover:bg-navy-500')} 
                 ${props.hidden  ? 'hidden' : 'flex'}
                 items-center
@@ -28,7 +28,7 @@ export function Button(props) {
     }
     else {
         return (
-            <button {...props} className={`text-sm text-navy-400 hover:underline hover:text-gray-600 ${props.className}`}>
+            <button {...props} onClick={props.onClick} className={`text-sm text-navy-400 hover:underline hover:text-gray-600 ${props.className}`}>
                 {props.children}
             </button>
         );

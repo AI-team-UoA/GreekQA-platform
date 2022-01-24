@@ -38,11 +38,11 @@ export function SignupForm() {
                                                                                         value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ]+$/
                                                                                 }})}
                     />
-                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*.uoa.gr)"
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*uoa.gr)"
                         errors={errors.email} register={register("email", { required: "Παρακαλώ συμπληρώστε το email σας",
                                                                             pattern: {
-                                                                                message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε .uoa.gr",
-                                                                                value: /^[^@]+@[^@]+\.uoa.gr$/
+                                                                                message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε uoa.gr",
+                                                                                value: /^[^@]+@[^@]*\uoa.gr$/
                                                                             }})}
                     />
                     <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="new-password" placeholder="To συνθηματικό σας"
