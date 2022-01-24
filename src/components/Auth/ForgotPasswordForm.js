@@ -7,7 +7,7 @@ import { NavyLink } from 'components/Shared/NavyLink';
 
 
 export function ForgotPasswordForm() {
-    const { resetPassword, error, isPending } = useResetPassword();
+    const { resetPassword, error, success, isPending } = useResetPassword();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data, e) => {
@@ -30,6 +30,7 @@ export function ForgotPasswordForm() {
                     />
                     <Button type="submit">{isPending ? 'Αποστολή email...' : 'Αποστολή email'}</Button>
                     {error && <div className="text-red-500 text-sm">{error}</div>}
+                    {success && <div className="text-green-500 text-sm">Το email απεστάλη με οδηγίες για την επαναφορά του κωδικού σας.</div>}
                 </form>
                 <div className="relative my-4">
                     <div className="absolute inset-0 flex items-center">

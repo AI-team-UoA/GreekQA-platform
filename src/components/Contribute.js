@@ -100,7 +100,7 @@ export function Contribute() {
                        errors={errorsQA}  register={registerQA("question", {    required: "Παρακαλώ συμπληρώστε μια ερώτηση",
                                                                                     pattern: {
                                                                                     message: "Παρακαλώ συμπληρώστε μια ερώτηση μόνο στα ελληνικά που να τελείωνει με ';'",
-                                                                                    value:  /^[α-ωΑ-ΩίϊΐόάέύϋΰήώΊΪΌΆΈΎΫΉΏ\s]{8};$/
+                                                                                    value: /.*;$/
                                                                                 }
                                                                             })}
                 />
@@ -110,15 +110,16 @@ export function Contribute() {
             {/* {selectionRange.startOffset}<br/>
             {selectionRange.endOffset} */}
             {/* <div className="grid grid-cols-2 gap-5"> */}
-                <Button type="submit">Προσθήκη Ερώτησης</Button>
+                <Button green type="submit">Προσθήκη Ερώτησης</Button>
             </form>
             <form onSubmit={handleSubmitParagraph(onSubmitParagraph)} className="space-y-6">
                 <Button type="submit">Καταχώρηση όλων των ερωτήσεων/απαντήσεων</Button>
-                <b className="select-none text-red-400">Προσοχή: </b>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
-
+                    <b className="select-none text-red-400">Προσοχή: </b>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
                 {/* {error && <div className="text-red-500 text-sm">{error}</div>} */}
             </form>
+                <div>
                 <NavyLink className="text-md" to="/dashboard/get-started">Επιστροφή στην εφαρμογή</NavyLink>
+                </div>
         </div>
     );
 }

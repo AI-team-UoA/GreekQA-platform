@@ -5,6 +5,7 @@ import { auth, firebaseErrors } from 'firebase/config';
 export const useResetPassword = () => {
   const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
   const [isPending, setIsPending] = useState(false)
   
   const resetPassword = async (email) => {
@@ -19,10 +20,12 @@ export const useResetPassword = () => {
       if (!isCancelled) {
         setIsPending(false)
         setError(null)
+        setSuccess(true)
       } 
     }
     catch(err) {
       if (!isCancelled) {
+        setSuccess(null)
         setError(firebaseErrors[err.code])
         setIsPending(false)
       }
@@ -33,5 +36,5 @@ export const useResetPassword = () => {
     return () => setIsCancelled(true)
   }, [])
 
-  return { resetPassword, error, isPending }
+  return { resetPassword, error, success, isPending }
 }

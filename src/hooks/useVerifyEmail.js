@@ -5,6 +5,7 @@ import { auth, firebaseErrors } from 'firebase/config';
 export const useVerifyEmail = () => {
   const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
   const [isPending, setIsPending] = useState(false)
   
   const verifyEmail = async () => {
@@ -19,10 +20,12 @@ export const useVerifyEmail = () => {
       if (!isCancelled) {
         setIsPending(false)
         setError(null)
+        setSuccess(true)
       } 
     }
     catch(err) {
       if (!isCancelled) {
+        setSuccess(null)
         setError(firebaseErrors[err.code])
         setIsPending(false)
       }
@@ -33,5 +36,5 @@ export const useVerifyEmail = () => {
     return () => setIsCancelled(true)
   }, [])
 
-  return { verifyEmail, error, isPending }
+  return { verifyEmail, error, success, isPending }
 }

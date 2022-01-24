@@ -6,6 +6,7 @@ import { useAuthContext } from 'hooks/useAuthContext';
 export const useLogin = () => {
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const { dispatch } = useAuthContext();
 
@@ -22,10 +23,12 @@ export const useLogin = () => {
       if (!isCancelled) {
         setIsPending(false);
         setError(null);
+        setSuccess(true);
       }
     } 
     catch(err) {
       if (!isCancelled) {
+        setSuccess(null);
         setError(firebaseErrors[err.code]);
         setIsPending(false);
       }
@@ -36,5 +39,5 @@ export const useLogin = () => {
     return () => setIsCancelled(true);
   }, [])
 
-  return { login, error, isPending }
+  return { login, error, success, isPending }
 }
