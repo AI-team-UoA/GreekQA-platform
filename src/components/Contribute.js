@@ -22,7 +22,12 @@ export function Contribute() {
     }, [response.document]);
 
     const popQA = (index) => {
-        document.paragraph.qas.splice(index, 1);
+        console.log("INDEX REMOVING IS", index);
+        var newDocument = JSON.parse(JSON.stringify(document));
+        newDocument.paragraph.qas.splice(index, 1);
+        setDocument(newDocument);
+        // newDocument.qa.splice(index, 1);
+        // setDocument(newDocument);
     };
 
     const pushQA = (qa) => {
@@ -47,9 +52,9 @@ export function Contribute() {
         }
         console.log("NEW QA", newQA);
         pushQA(newQA);
-        // resetFieldQA("question");
-        // setSelectedText('');
-        // setSelectionRange({});
+        resetFieldQA("question");
+        setSelectedText('');
+        setSelectionRange({});
     };
 
     
@@ -88,7 +93,7 @@ export function Contribute() {
                         <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-navy-900 space-y-6 rounded-lg bg-gray-50 shadow-lg">
                             <Input label={`Ερώτηση ${index+1}`} type="text" value={qa.question} disabled readOnly></Input>
                             <Input label={`Απάντηση ${index+1}`} type="text" value={qa.answers[0].text} disabled readOnly></Input>
-                            <button onClick={()=> popQA(index)}>Αφαίρεση Ερώτησης</button>
+                            <Button red onClick={()=> popQA(index)}>Αφαίρεση Ερώτησης</Button>
                         </Disclosure.Panel>
                         </>
                     )}
@@ -97,14 +102,15 @@ export function Contribute() {
             </div>
             <form onSubmit={handleSubmitQA(onSubmitQA)} className="space-y-4">
                 <Input label="Νέα ερώτηση" id="question" name="question" type="text" placeholder="Γράψτε την ερώτηση" autocomplete="off"
-                       errors={errorsQA}  register={registerQA("question", {    required: "Παρακαλώ συμπληρώστε μια ερώτηση",
+                       errors={errorsQA.question}  register={registerQA("question", {    required: "Παρακαλώ συμπληρώστε μια ερώτηση",
                                                                                     pattern: {
-                                                                                    message: "Παρακαλώ συμπληρώστε μια ερώτηση μόνο στα ελληνικά που να τελείωνει με ';'",
-                                                                                    value: /.*;$/
+                                                                                    message: "Παρακαλώ συμπληρώστε μια ερώτηση στα ελληνικά που να τελειώνει με ερωτηματικό (π.χ. Ποιος είναι;)",
+                                                                                    value: /^[Α-Ωα-ωA-Za-zΆΈΊΌΎΏΪΫΏάέήίόύώϊϋΰψΐζήθόςώϊΐΰΆΈΉΊΌΎΏΪΫΏάέήίόύώϊϋΰψΐζήθόςώϊΐΰ0-9\s]+;$/
                                                                                 }
                                                                             })}
                 />
-                <Input label="Νέα απάντηση" id="answer" name="answer" type="text" placeholder="Μάρκαρετε την απάντηση στο κείμενο" value={selectedText} readOnly register={registerQA("answer")}
+                <Input label="Νέα απάντηση" id="answer" name="answer" type="text" placeholder="Μάρκαρετε την απάντηση στην παράγραφο" value={selectedText} readOnly
+                       errors={errorsQA.answer} register={registerQA("answer")}
                 />
             
             {/* {selectionRange.startOffset}<br/>

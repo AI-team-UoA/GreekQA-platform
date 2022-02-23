@@ -21,11 +21,11 @@ export function ForgotPasswordForm() {
             <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <span className="text-navy-700 ">Θα σας στείλουμε ένα email για να ορίσετε ένα <b>νέο συνθηματικό</b>, αν υπάρχει λογαριασμός με αυτό το email.</span>
-                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*.uoa.gr)"
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*uoa.gr)"
                         errors={errors.email} register={register("email", { required: "Παρακαλώ συμπληρώστε το email σας",
                         pattern: {
-                            message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε .uoa.gr",
-                            value: /^[^@]+@[^@]+\.uoa.gr$/
+                            message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε uoa.gr",
+                            value: /^[^@]+@[^@]*\uoa.gr$/
                         }})}    
                     />
                     <Button type="submit">{isPending ? 'Αποστολή email...' : 'Αποστολή email'}</Button>

@@ -24,11 +24,11 @@ export function LoginForm() {
             <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Είσοδος στο GreekQA</h1>
             <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*.uoa.gr)"
+                    <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*uoa.gr)"
                         errors={errors.email} register={register("email", { required: "Παρακαλώ συμπληρώστε το email σας",
                                                                             pattern: {
-                                                                                message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε .uoa.gr",
-                                                                                value: /^[^@]+@[^@]+\.uoa.gr$/
+                                                                                message: "Παρακαλώ συμπληρώστε ένα email που τελειώνει σε uoa.gr",
+                                                                                value: /^[^@]+@[^@]*\uoa.gr$/
                                                                             }})}
                     />
                     <Input label="Συνθηματικό" id="password" name="password" type="password" autoComplete="current-password" placeholder="To συνθηματικό σας"
