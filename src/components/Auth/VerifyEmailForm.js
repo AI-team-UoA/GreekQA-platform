@@ -20,7 +20,7 @@ export function VerifyEmailForm() {
                         <br/><br/>
                         <b>Αφού επιβεβαιώσετε</b> τον λογαριασμό σας, παρακαλώ <b>ανανεώστε</b> την παρούσα σελίδα.
                         <br/><br/>
-                        Για <b>οποιοδήποτε πρόβλημα</b> επικοινωνήστε μαζί μας στη διεύθυνση <NavyLink a href="mailto:sdi1600152@di.uoa.gr">sdi1600152@di.uoa.gr</NavyLink>
+                        Για <b>οποιοδήποτε πρόβλημα</b> επικοινωνήστε μαζί μας στη διεύθυνση <NavyLink a href="mailto:greekqa.di.uoa@gmail.com">greekqa.di.uoa@gmail.com</NavyLink>
                     </p>
                     <Button disabled type="submit">{isPendingVerifyEmail ? 'Επαναποστολή email...' : 'Επαναποστολή email'}</Button>
                 </form>
