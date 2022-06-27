@@ -25,7 +25,9 @@ export const useChangeDisplayName = () => {
         setIsPending(false)
         setError(null)
         setSuccess(true)
-      } 
+      }
+
+      return auth.currentUser
     }
     catch(err) {
       if (!isCancelled) {

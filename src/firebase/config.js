@@ -3,6 +3,7 @@ import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 import { getAnalytics, logEvent } from 'firebase/analytics';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+// import { initializeApp as initializeAdminApp } from 'firebase-admin/app';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -16,6 +17,7 @@ const firebaseConfig = {
 }
 
 const firebaseApp = initializeApp(firebaseConfig);
+// const adminApp = initializeAdminApp();
 
 initializeAppCheck(firebaseApp, {
   provider: new ReCaptchaV3Provider(process.env.REACT_APP_RECAPTCHA_SITE_KEY),

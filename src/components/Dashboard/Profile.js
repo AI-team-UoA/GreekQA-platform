@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, response } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useAuthContext } from 'hooks/useAuthContext';
@@ -8,8 +8,21 @@ import { useChangePassword } from 'hooks/useChangePassword';
 import { Input } from 'components/Shared/Input';
 import { Button } from 'components/Shared/Button';
 
+import { useFirestore } from 'hooks/useFirestore';
+
 export function Profile() {
     const { user } = useAuthContext();
+    const { updateUserInfo, getUser, response } = useFirestore();
+
+    useEffect(() => {
+        getUser(user.uid);
+    }, []);
+
+    const [document, setDocument] = useState(null);
+    useEffect(() => {
+        setDocument(response.document);
+    }, [response.document]);
+
     const [currentFirstname, currentLastname] = user.displayName.split(' ');
 
     const [passwordShown, setPasswordShown] = useState(false);
@@ -26,7 +39,8 @@ export function Profile() {
     const { register: registerDisplayName, handleSubmit: handleSubmitDisplayName, formState: { errors: errorsDisplayName } } = useForm();
     const onSubmitDisplayName = (data, e) => {
         e.preventDefault();
-        changeDisplayName(data.firstname, data.lastname);
+        const user = changeDisplayName(data.firstname, data.lastname);
+        updateUserInfo(user);
     };
 
     const { register: registerPassword, watch: watchPassword, handleSubmit: handleSubmitPassword, formState: { errors: errorsPassword } } = useForm();
@@ -55,6 +69,15 @@ export function Profile() {
                                                                                                       }})}
                     />
                 </div>
+                {document ? (
+                    <ul className="grid grid-cols-1 gap-5">
+                        <li>
+                            Έχετε συμπληρώσει <span className="font-medium text-navy-600">{document.user.numParagraphs}</span> παραγράφους.
+                        </li>
+                        <li>
+                            Έχετε γράψει <span className="font-medium text-navy-600">{document.user.numQas}</span> ερωτοαπαντήσεις από τον χρήστη (<span className="font-medium text-navy-600">{+(((document.user.numQas / document.user.numParagraphs) * 100).toFixed(2)) || 0}</span> ερωτοαπαντήσεις ανά παράγραφο).
+                        </li>
+                    </ul>) : null}
                     <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" value={user.email} disabled />
                     <Button type="submit">{isPendingChangeDisplayName ? 'Αποθήκευση Αλλαγών...' : 'Αποθήκευση Αλλαγών'}</Button>
                     {errorChangeDisplayName && <div className="text-red-500 text-sm">{errorChangeDisplayName}</div>}

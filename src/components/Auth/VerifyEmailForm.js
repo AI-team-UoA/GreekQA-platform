@@ -20,9 +20,9 @@ export function VerifyEmailForm() {
                         <br/><br/>
                         <b>Αφού επιβεβαιώσετε</b> τον λογαριασμό σας, παρακαλώ <b>ανανεώστε</b> την παρούσα σελίδα.
                         <br/><br/>
-                        Για <b>οποιοδήποτε πρόβλημα</b> επικοινωνήστε μαζί μας στη διεύθυνση <NavyLink a href="mailto:greekqa.di.uoa@gmail.com">greekqa.di.uoa@gmail.com</NavyLink>
+                        Για <b>οποιοδήποτε πρόβλημα</b> επικοινωνήστε μαζί μας στη διεύθυνση <NavyLink a="true" href="mailto:greekqa.di.uoa@gmail.com">greekqa.di.uoa@gmail.com</NavyLink>
                     </p>
-                    <Button disabled type="submit">{isPendingVerifyEmail ? 'Επαναποστολή email...' : 'Επαναποστολή email'}</Button>
+                    <Button disabled="true" type="submit">{isPendingVerifyEmail ? 'Επαναποστολή email...' : 'Επαναποστολή email'}</Button>
                 </form>
                 {errorVerifyEmail && <div className="text-red-500 text-sm">{errorVerifyEmail}</div>}
                 <div className="relative my-4">
@@ -35,7 +35,7 @@ export function VerifyEmailForm() {
                 </div>
                 <div className="relative flex justify-center">
                     {/* <button className="text-sm text-navy-400 hover:underline hover:text-gray-600" onClick={() => navigate(-1)}>Πήγαινε πίσω</button> */}
-                    <Button link onClick={logout}>{isPendingLogout ? 'Αποσύνδεση από την εφαρμογή...' : 'Αποσύνδεση από την εφαρμογή'}</Button>
+                    <Button link="true" onClick={logout}>{isPendingLogout ? 'Αποσύνδεση από την εφαρμογή...' : 'Αποσύνδεση από την εφαρμογή'}</Button>
                 </div>
             </div>
         </div>

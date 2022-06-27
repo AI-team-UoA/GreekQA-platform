@@ -131,7 +131,7 @@ export const GuidelineItems = [
     {
         question: "Έχω κι άλλες απορίες. Πού μπορώ να απευθυνθώ;",
         answer: <div>
-                Για <b>οποιαδήποτε απορία</b>, μη διστάσετε να επικοινωνήσετε μαζί μας στη διεύθυνση <NavyLink a className="font-medium" href="mailto:greekqa.di.uoa@gmail.com">greekqa.di.uoa@gmail.com</NavyLink>
+                Για <b>οποιαδήποτε απορία</b>, μη διστάσετε να επικοινωνήσετε μαζί μας στη διεύθυνση <NavyLink a="true" className="font-medium" href="mailto:greekqa.di.uoa@gmail.com">greekqa.di.uoa@gmail.com</NavyLink>
                 </div>,
         open: ""
     }

@@ -11,7 +11,7 @@ import { Input } from 'components/Shared/Input';
 import { Button } from 'components/Shared/Button';
 
 export function Contribute() {
-    const { getDocument, response } = useFirestore();
+    const { getDocument, updateUserStats, response } = useFirestore();
     useEffect(() => {
         getDocument();
     }, []);
@@ -93,7 +93,7 @@ export function Contribute() {
                         <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-navy-900 space-y-6 rounded-lg bg-gray-50 shadow-lg">
                             <Input label={`Ερώτηση ${index+1}`} type="text" value={qa.question} disabled readOnly></Input>
                             <Input label={`Απάντηση ${index+1}`} type="text" value={qa.answers[0].text} disabled readOnly></Input>
-                            <Button red onClick={()=> popQA(index)}>Αφαίρεση Ερώτησης</Button>
+                            <Button red="true" onClick={()=> popQA(index)}>Αφαίρεση Ερώτησης</Button>
                         </Disclosure.Panel>
                         </>
                     )}
@@ -116,7 +116,7 @@ export function Contribute() {
             {/* {selectionRange.startOffset}<br/>
             {selectionRange.endOffset} */}
             {/* <div className="grid grid-cols-2 gap-5"> */}
-                <Button green type="submit">Προσθήκη Ερώτησης</Button>
+                <Button green="true" type="submit">Προσθήκη Ερώτησης</Button>
             </form>
             <form onSubmit={handleSubmitParagraph(onSubmitParagraph)} className="space-y-6">
                 <Button type="submit">Καταχώρηση όλων των ερωτήσεων/απαντήσεων</Button>

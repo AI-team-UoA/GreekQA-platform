@@ -36,7 +36,9 @@ export const useSignup = () => {
         setError(null)
         setSuccess(true)
       }
-    } 
+
+      return res.user
+    }
     catch(err) {
       if (!isCancelled) {
         setSuccess(null)
@@ -44,6 +46,7 @@ export const useSignup = () => {
         setIsPending(false)
       }
     }
+    
   }
 
   useEffect(() => {
