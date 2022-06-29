@@ -6,7 +6,7 @@ import { Input } from 'components/Shared/Input';
 import { Button } from 'components/Shared/Button';
 import { NavyLink } from 'components/Shared/NavyLink';
 
-import { useFirestore } from 'hooks/useFirestore';
+import { useFirestoreUsers } from 'hooks/useFirestoreUsers';
 
 export function SignupForm() {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -15,7 +15,7 @@ export function SignupForm() {
 
     const { signup, error, isPending } = useSignup();
     
-    const { addUser } = useFirestore();
+    const { addUser } = useFirestoreUsers();
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (data, e) => {

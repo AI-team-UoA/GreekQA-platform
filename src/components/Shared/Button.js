@@ -1,8 +1,8 @@
 export function Button(props) {
     if (!props.link) {
         return (
-            <button onClick={props.onClick}
-            className={`${props.green  ? 'bg-green-400 hover:bg-green-500' : (props.red ? 'bg-red-400 hover:bg-red-500' : 'bg-navy-400 hover:bg-navy-500')} 
+            <button onClick={props.onClick} disabled={props.disabled}
+            className={`${props.green  ? 'bg-green-400 hover:bg-green-500' : (props.red ? 'bg-red-500 hover:bg-red-600' : 'bg-navy-400 hover:bg-navy-500')} 
                 ${props.hidden  ? 'hidden' : 'flex'}
                 items-center
                 justify-center

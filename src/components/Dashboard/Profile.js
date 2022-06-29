@@ -1,4 +1,4 @@
-import { useState, useEffect, response } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useAuthContext } from 'hooks/useAuthContext';
@@ -8,11 +8,11 @@ import { useChangePassword } from 'hooks/useChangePassword';
 import { Input } from 'components/Shared/Input';
 import { Button } from 'components/Shared/Button';
 
-import { useFirestore } from 'hooks/useFirestore';
+import { useFirestoreUsers } from 'hooks/useFirestoreUsers';
 
 export function Profile() {
     const { user } = useAuthContext();
-    const { updateUserInfo, getUser, response } = useFirestore();
+    const { updateUserInfo, getUser, response } = useFirestoreUsers();
 
     useEffect(() => {
         getUser(user.uid);
@@ -37,10 +37,11 @@ export function Profile() {
     const { changePassword, error: errorChangePassword, success: successChangePassword, isPending: isPendingChangePassword } = useChangePassword();
 
     const { register: registerDisplayName, handleSubmit: handleSubmitDisplayName, formState: { errors: errorsDisplayName } } = useForm();
-    const onSubmitDisplayName = (data, e) => {
+    const onSubmitDisplayName = async (data, e) => {
         e.preventDefault();
-        const user = changeDisplayName(data.firstname, data.lastname);
-        updateUserInfo(user);
+        const user = await changeDisplayName(data.firstname, data.lastname);
+        await updateUserInfo(user);
+        getUser(user.uid);
     };
 
     const { register: registerPassword, watch: watchPassword, handleSubmit: handleSubmitPassword, formState: { errors: errorsPassword } } = useForm();
@@ -51,17 +52,29 @@ export function Profile() {
 
     return (
         <div className="space-y-12">
+            <div className="p-6 max-w-3xl space-y-6 shadow-lg rounded-lg">
+                <h3 className="mb-6 text-xl font-medium text-navy-600 select-none">Τα στατιστικά μου</h3>
+                {document ? (
+                <ul className="grid grid-cols-1 gap-5">
+                    <li>
+                        Έχετε συμπληρώσει <span className="font-medium text-navy-600">{document.user.numParagraphs}</span> παραγράφους.
+                    </li>
+                    <li>
+                        Έχετε γράψει <span className="font-medium text-navy-600">{document.user.numParagraphs}</span> ερωτοαπαντήσεις από τον χρήστη (<span className="font-medium text-navy-600">{+(((document.user.numQas / document.user.numParagraphs)).toFixed(2)) || 0}</span> ερωτοαπαντήσεις ανά παράγραφο).
+                    </li>
+                </ul>) : null}
+            </div>
             <form onSubmit={handleSubmitDisplayName(onSubmitDisplayName)} className="p-6 max-w-3xl space-y-6 shadow-lg rounded-lg">
                 <h3 className="mb-6 text-xl font-medium text-navy-600 select-none">Τα στοιχεία μου</h3>
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                    <Input label="Όνομα" id="firstname" name="firstname" type="text" autoComplete="given-name" placeholder="Το όνομά σας (π.χ. ΙΩΑΝΝΗΣ)" defaultValue={currentFirstname}
+                    <Input label="Όνομα" id="firstname" name="firstname" type="text" autoComplete="given-name" disabled placeholder="Το όνομά σας (π.χ. ΙΩΑΝΝΗΣ)" defaultValue={currentFirstname}
                         errors={errorsDisplayName.firstname} register={registerDisplayName("firstname", {   required: "Παρακαλώ συμπληρώστε το όνομά σας",
                                                                                                             pattern: {
                                                                                                                 message: "Παρακαλώ συμπληρώστε το όνομα σας χωρίς κενά (διπλά ονόματα με παύλα)",
                                                                                                                 value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ]+$/
                                                                                                         }})}
                     />
-                    <Input label="Επώνυμο" id="lastname" name="lastname" type="text" autoComplete="family-name" placeholder="Το επώνυμό σας (π.χ. ΠΑΠΑΔΟΠΟΥΛΟΣ)" defaultValue={currentLastname}
+                    <Input label="Επώνυμο" id="lastname" name="lastname" type="text" autoComplete="family-name" disabled placeholder="Το επώνυμό σας (π.χ. ΠΑΠΑΔΟΠΟΥΛΟΣ)" defaultValue={currentLastname}
                         errors={errorsDisplayName.lastname} register={registerDisplayName("lastname", { required: "Παρακαλώ συμπληρώστε το επώνυμό σας",
                                                                                                         pattern: {
                                                                                                             message: "Παρακαλώ συμπληρώστε το επώνυμό σας χωρίς κενά (διπλά επώνυμα με παύλα)",
@@ -69,17 +82,8 @@ export function Profile() {
                                                                                                       }})}
                     />
                 </div>
-                {document ? (
-                    <ul className="grid grid-cols-1 gap-5">
-                        <li>
-                            Έχετε συμπληρώσει <span className="font-medium text-navy-600">{document.user.numParagraphs}</span> παραγράφους.
-                        </li>
-                        <li>
-                            Έχετε γράψει <span className="font-medium text-navy-600">{document.user.numQas}</span> ερωτοαπαντήσεις από τον χρήστη (<span className="font-medium text-navy-600">{+(((document.user.numQas / document.user.numParagraphs) * 100).toFixed(2)) || 0}</span> ερωτοαπαντήσεις ανά παράγραφο).
-                        </li>
-                    </ul>) : null}
                     <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" value={user.email} disabled />
-                    <Button type="submit">{isPendingChangeDisplayName ? 'Αποθήκευση Αλλαγών...' : 'Αποθήκευση Αλλαγών'}</Button>
+                    <Button disabled type="submit">{isPendingChangeDisplayName ? 'Αποθήκευση Αλλαγών...' : 'Αποθήκευση Αλλαγών'}</Button>
                     {errorChangeDisplayName && <div className="text-red-500 text-sm">{errorChangeDisplayName}</div>}
                     {successChangeDisplayName && <div className="text-green-500 text-sm">Τα στοιχεία σας ενημερώθηκαν!</div>}
             </form>

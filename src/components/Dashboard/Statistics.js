@@ -2,14 +2,16 @@ import { Fragment, useEffect, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
-import { useFirestore } from 'hooks/useFirestore';
-import { DocumentTextIcon } from '@heroicons/react/outline';
+import { useFirestoreUsers } from 'hooks/useFirestoreUsers';
+// import { useFirestoreStatistics } from 'hooks/useFirestoreStatistics';
 
 export function Statistics() {
-    const { getUsers, response } = useFirestore();
+    const { getUsers, response } = useFirestoreUsers();
+    // const { getStatistics, response: responseStatistics } = useFirestoreStatistics();
 
     useEffect(() => {
         getUsers();
+        // getStatistics();
     }, []);
 
     const [document, setDocument] = useState(null);
@@ -17,36 +19,17 @@ export function Statistics() {
         setDocument(response.document);
     }, [response.document]);
 
+    // const [statsDocument, setStatsDocument] = useState(null);
+    // useEffect(() => {
+    //     setStatsDocument(responseStatistics);
+    // }, [responseStatistics]);
+
     const paragraphsCompleted = 18
     const paragraphsTotal = 141
     const paragraphsPerc = (paragraphsCompleted / paragraphsTotal) * 100
 
     const qasWritten = 30
-    const meanQasPerParagraph = (qasWritten / paragraphsTotal) * 100
-
-    // const people = [
-    //     { 
-    //         id: 1,
-    //         name: 'Durward Reynolds'
-    //     },
-    //     { 
-    //         id: 2,
-    //         name: 'Kenton Towne'
-    //     },
-    //     { 
-    //         id: 3,
-    //         name: 'Therese Wunsch'
-    //     },
-    //     { 
-    //         id: 4,
-    //         name: 'Benedict Kessler'
-    //     },
-    //     {
-    //         id: 5,
-    //         name: 'Katelyn Rohan'
-    //     },
-    //   ]
-      
+    const meanQasPerParagraph = (qasWritten / paragraphsTotal) * 100     
     
     const [selected, setSelected] = useState('')
     const [query, setQuery] = useState('')
@@ -56,7 +39,7 @@ export function Statistics() {
     query === ''
       ? people
       : people.filter((person) =>
-          person.name
+          person.displayName
             .toLowerCase()
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, ''))
@@ -69,7 +52,7 @@ export function Statistics() {
                     <h3 className="mb-6 text-xl font-medium text-navy-600 select-none">Στατιστικά Συνόλου Δεδομένων</h3>
                     <ul className="grid grid-cols-1 gap-5">
                         <li>
-                            Έχουν συμπληρωθεί <span className="font-medium text-navy-600">{paragraphsCompleted}</span> από τις <span className="font-medium text-navy-600">{paragraphsTotal}</span> παραγράφους (<span className="font-medium text-navy-600">{paragraphsPerc.toFixed(2)}%</span>).
+                            Έχουν συμπληρωθεί <span className="font-medium text-navy-600"></span> από τις <span className="font-medium text-navy-600">{paragraphsTotal}</span> παραγράφους (<span className="font-medium text-navy-600">{paragraphsPerc.toFixed(2)}%</span>).
                         </li>
                         <li>
                             Έχουν γραφτεί <span className="font-medium text-navy-600">{qasWritten}</span> ερωτοαπαντήσεις (<span className="font-medium text-navy-600">{meanQasPerParagraph.toFixed(2)}</span> ερωτοαπαντήσεις ανά παράγραφο).
@@ -110,7 +93,7 @@ export function Statistics() {
                                 ) : (
                                     filteredPeople.map((person) => (
                                     <Combobox.Option
-                                        key={person.id}
+                                        key={person.displayName}
                                         className={({ active }) =>
                                         `relative cursor-default select-none py-2 pl-10 pr-4 ${
                                             active ? 'bg-navy-600 text-white' : 'text-gray-900'
@@ -125,7 +108,7 @@ export function Statistics() {
                                                 selected ? 'font-medium' : 'font-normal'
                                             }`}
                                             >
-                                            {person.name}
+                                            {person.displayName}
                                             </span>
                                             {selected ? (
                                             <span
@@ -148,7 +131,7 @@ export function Statistics() {
                     {selected ? (
                     <ul className="grid grid-cols-1 gap-2 list-disc list-inside">
                         <li>
-                            Όνομα χρήστη: <span className="font-medium text-navy-600">{selected.name}</span>
+                            Όνομα χρήστη: <span className="font-medium text-navy-600">{selected.displayName}</span>
                         </li>
                         <li>
                             Email χρήστη: <span className="font-medium text-navy-600">{selected.email}</span>

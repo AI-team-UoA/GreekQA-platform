@@ -9,7 +9,7 @@ export function NotFoundPage() {
                 <NotFoundSvg />
             </div>
             <div className="mx-auto mt-20 text-3xl font-bold text-navy-800 text-center">Η σελίδα δεν βρέθηκε.</div>
-            <NavyLink to="/" className="mx-auto mt-2 text-lg text-center">Επιστροφή στην αρχική σελίδα.</NavyLink>
+            <NavyLink to="/" className="mx-auto mt-2 text-lg text-center">Επιστροφή στην αρχική σελίδα</NavyLink>
         </div>
     )
 }

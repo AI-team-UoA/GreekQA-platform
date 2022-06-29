@@ -46,7 +46,7 @@ export function Sidebar() {
                     </li>))
                 }
               </ul>
-              <p className="px-4 pt-4 font-medium text-white uppercase select-none">ΔΙΑΧΕΙΡΙΣΤΗΣ</p>
+              {/* <p className="px-4 pt-4 font-medium text-white uppercase select-none">ΔΙΑΧΕΙΡΙΣΤΗΣ</p>
               <ul>
                 {NavigationItems.admin.map((item, index) => (
                     <li key={index}>
@@ -60,7 +60,7 @@ export function Sidebar() {
                       </NavLink>
                     </li>))
                 }
-              </ul>
+              </ul> */}
             </nav>
           </div>
             <Menu as="div" className="relative inline-block text-left">

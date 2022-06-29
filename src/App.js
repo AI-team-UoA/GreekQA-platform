@@ -11,7 +11,7 @@ import { GetStartedPage } from 'pages/Dashboard/GetStartedPage';
 import { ContributePage } from 'pages/ContributePage';
 import { GuidelinesPage } from 'pages/Dashboard/GuidelinesPage';
 import { ProfilePage } from 'pages/Dashboard/ProfilePage';
-import { StatisticsPage } from 'pages/Dashboard/StatisticsPage';
+// import { StatisticsPage } from 'pages/Dashboard/StatisticsPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { LoadingPage } from 'pages/LoadingPage';
 
@@ -71,13 +71,13 @@ function App() {
                     </RequireAuthVerified>
                   }
                 />
-                <Route exact path="/dashboard/statistics"
+                {/* <Route exact path="/dashboard/statistics"
                   element={
                     <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <StatisticsPage />
                     </RequireAuthVerified>
                   }
-                />
+                /> */}
                 <Route exact path="/contribute"
                   element={
                     <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">

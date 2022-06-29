@@ -4,16 +4,18 @@ import { useForm } from 'react-hook-form';
 import { Disclosure } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/solid';
 
-import { useFirestore } from 'hooks/useFirestore';
+import { useAuthContext } from 'hooks/useAuthContext';
+import { useFirestoreParagraphs } from 'hooks/useFirestoreParagraphs';
 
 import { NavyLink } from 'components/Shared/NavyLink';
 import { Input } from 'components/Shared/Input';
 import { Button } from 'components/Shared/Button';
 
 export function Contribute() {
-    const { getDocument, updateUserStats, response } = useFirestore();
+    const { user } = useAuthContext();
+    const { getDocument, updateQas, response } = useFirestoreParagraphs();
     useEffect(() => {
-        getDocument();
+        getDocument(user.uid);
     }, []);
 
     const [ document, setDocument ] = useState(null);
@@ -21,8 +23,18 @@ export function Contribute() {
         setDocument(response.document);
     }, [response.document]);
 
+    const submitQAs = async (document, user_uid) => {
+        const answer = window.confirm("Είστε σίγουροι ότι θέλετε να καταχωρήσετε όλες τις απαντήσεις/ερωτήσεις;");
+        if (answer) {
+            await updateQas(document, user_uid);
+        } else {
+            
+          console.log("Thing was not saved to the database.");
+        }
+        getDocument(user.uid);
+    }
+
     const popQA = (index) => {
-        console.log("INDEX REMOVING IS", index);
         var newDocument = JSON.parse(JSON.stringify(document));
         newDocument.paragraph.qas.splice(index, 1);
         setDocument(newDocument);
@@ -33,7 +45,6 @@ export function Contribute() {
     const pushQA = (qa) => {
         document.paragraph.qas.push(qa);
     };
-
 
     const [selectedText, setSelectedText] = useState('');
     const [selectionRange, setSelectionRange] = useState({});
@@ -50,17 +61,10 @@ export function Contribute() {
                 }
             ]
         }
-        console.log("NEW QA", newQA);
         pushQA(newQA);
         resetFieldQA("question");
         setSelectedText('');
         setSelectionRange({});
-    };
-
-    
-    const { register: registerParagraph, handleSubmit: handleSubmitParagraph, formState: { errors: errorsParagraph } } = useForm();
-    const onSubmitParagraph = (data, e) => {
-        e.preventDefault();
     };
 
     return (
@@ -110,22 +114,24 @@ export function Contribute() {
                                                                             })}
                 />
                 <Input label="Νέα απάντηση" id="answer" name="answer" type="text" placeholder="Μάρκαρετε την απάντηση στην παράγραφο" value={selectedText} readOnly
-                       errors={errorsQA.answer} register={registerQA("answer")}
+                       errors={errorsQA.answer} register={registerQA("answer", )}
                 />
             
-            {/* {selectionRange.startOffset}<br/>
-            {selectionRange.endOffset} */}
-            {/* <div className="grid grid-cols-2 gap-5"> */}
                 <Button green="true" type="submit">Προσθήκη Ερώτησης</Button>
             </form>
-            <form onSubmit={handleSubmitParagraph(onSubmitParagraph)} className="space-y-6">
-                <Button type="submit">Καταχώρηση όλων των ερωτήσεων/απαντήσεων</Button>
-                    <b className="select-none text-red-400">Προσοχή: </b>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
+            <Button type="submit" onClick={()=> submitQAs(document, user.uid)} disabled={document ? (document.paragraph.qas.length >= 3 ? false: true): true}>Καταχώρηση όλων των ερωτήσεων/απαντήσεων {document ? (document.paragraph.qas.length >= 3 ? "" : "(Χρειάζεστε τουλάχιστον 3 ερωτήσεις/απαντήσεις!)"): "(Χρειάζεστε τουλάχιστον 3 ερωτήσεις/απαντήσεις!)"}</Button>
+            <div>
+                <b className="select-none text-red-400">Προσοχή: </b>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
+            </div>
+
+            {/* <form onSubmit={handleSubmitParagraph(onSubmitParagraph)} className="space-y-6">
+                <input type="hidden" name="qas[]" value={document ? document.paragraph.qas : ''} register={registerParagraph("qas[]", { })}></input>
+                
                 {/* {error && <div className="text-red-500 text-sm">{error}</div>} */}
-            </form>
-                <div>
-                <NavyLink className="text-md" to="/dashboard/get-started">Επιστροφή στην εφαρμογή</NavyLink>
-                </div>
+            {/* </form> */}
+            <div>
+                <NavyLink className="text-lg" to="/dashboard/get-started">Επιστροφή στην εφαρμογή</NavyLink>
+            </div>
         </div>
     );
 }
