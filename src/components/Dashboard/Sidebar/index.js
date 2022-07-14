@@ -93,7 +93,7 @@ export function Sidebar() {
                   <div className="px-1 py-1 ">
                     <Menu.Item>
                       {({ active }) => (
-                        <Link to="/account/profile"
+                        <Link to="/account"
                           className={`${
                             active ? 'transition duration-200 ease-in-out bg-navy-400 text-white' : 'text-navy-800'
                           } group flex rounded-md items-center w-full px-2 py-2 text-sm`}

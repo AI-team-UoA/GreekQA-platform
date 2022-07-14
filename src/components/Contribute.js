@@ -8,6 +8,7 @@ import { useAuthContext } from 'hooks/useAuthContext';
 import { useFirestoreParagraphs } from 'hooks/useFirestoreParagraphs';
 
 import { NavyLink } from 'components/Shared/NavyLink';
+import { Link } from 'react-router-dom';
 import { Input } from 'components/Shared/Input';
 import { Button } from 'components/Shared/Button';
 
@@ -27,19 +28,14 @@ export function Contribute() {
         const answer = window.confirm("Είστε σίγουροι ότι θέλετε να καταχωρήσετε όλες τις απαντήσεις/ερωτήσεις;");
         if (answer) {
             await updateQas(document, user_uid);
-        } else {
-            
-          console.log("Thing was not saved to the database.");
+            getDocument(user.uid);
         }
-        getDocument(user.uid);
     }
 
     const popQA = (index) => {
         var newDocument = JSON.parse(JSON.stringify(document));
         newDocument.paragraph.qas.splice(index, 1);
         setDocument(newDocument);
-        // newDocument.qa.splice(index, 1);
-        // setDocument(newDocument);
     };
 
     const pushQA = (qa) => {
@@ -108,7 +104,7 @@ export function Contribute() {
                 <Input label="Νέα ερώτηση" id="question" name="question" type="text" placeholder="Γράψτε την ερώτηση" autocomplete="off"
                        errors={errorsQA.question}  register={registerQA("question", {    required: "Παρακαλώ συμπληρώστε μια ερώτηση",
                                                                                     pattern: {
-                                                                                    message: "Παρακαλώ συμπληρώστε μια ερώτηση στα ελληνικά που να τελειώνει με ερωτηματικό (π.χ. Ποιος είναι;)",
+                                                                                    message: "Παρακαλώ συμπληρώστε μια ερώτηση στα ελληνικά που να τελειώνει με ερωτηματικό (π.χ. Πόσο χρονών είναι ο Πρίγκιπας Κάρολος;)",
                                                                                     value: /^[Α-Ωα-ωA-Za-zΆΈΊΌΎΏΪΫΏάέήίόύώϊϋΰψΐζήθόςώϊΐΰΆΈΉΊΌΎΏΪΫΏάέήίόύώϊϋΰψΐζήθόςώϊΐΰ0-9\s]+;$/
                                                                                 }
                                                                             })}
@@ -117,20 +113,15 @@ export function Contribute() {
                        errors={errorsQA.answer} register={registerQA("answer", )}
                 />
             
-                <Button green="true" type="submit">Προσθήκη Ερώτησης</Button>
+                <Button green="true" type="submit" disabled={document ? (document.paragraph.qas.length >= 5 ? true: false): false}>Προσθήκη Ερώτησης {document ? (document.paragraph.qas.length >= 5 ? "(Μπορείτε να καταχωρήσετε το πολύ 5 ερωτήσεις/απαντήσεις ανά παράγραφο!)" : ""): ""}</Button>
             </form>
-            <Button type="submit" onClick={()=> submitQAs(document, user.uid)} disabled={document ? (document.paragraph.qas.length >= 3 ? false: true): true}>Καταχώρηση όλων των ερωτήσεων/απαντήσεων {document ? (document.paragraph.qas.length >= 3 ? "" : "(Χρειάζεστε τουλάχιστον 3 ερωτήσεις/απαντήσεις!)"): "(Χρειάζεστε τουλάχιστον 3 ερωτήσεις/απαντήσεις!)"}</Button>
+            <Button type="submit" onClick={()=> submitQAs(document, user.uid)} disabled={document ? (document.paragraph.qas.length >= 3 ? false: true): true}>Καταχώρηση όλων των ερωτήσεων/απαντήσεων {document ? (document.paragraph.qas.length >= 3 ? "" : "(Χρειάζεστε τουλάχιστον 3 ερωτήσεις/απαντήσεις ανά παράγραφο!)"): "(Χρειάζεστε τουλάχιστον 3 ερωτήσεις/απαντήσεις ανά παράγραφο!)"}</Button>
             <div>
-                <b className="select-none text-red-400">Προσοχή: </b>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
+                <b className="text-red-500">Προσοχή: </b>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
             </div>
-
-            {/* <form onSubmit={handleSubmitParagraph(onSubmitParagraph)} className="space-y-6">
-                <input type="hidden" name="qas[]" value={document ? document.paragraph.qas : ''} register={registerParagraph("qas[]", { })}></input>
-                
-                {/* {error && <div className="text-red-500 text-sm">{error}</div>} */}
-            {/* </form> */}
             <div>
-                <NavyLink className="text-lg" to="/dashboard/get-started">Επιστροφή στην εφαρμογή</NavyLink>
+                <Link to="/get-started" className="px-4 py-2 bg-navy-400 text-white font-medium rounded-lg transition duration-200 ease-in-out select-none hover:bg-navy-600">Επιστροφή στην εφαρμογή</Link>
+                {/* <NavyLink className="text-lg font-semibold" to="/get-started">Επιστροφή στην εφαρμογή</NavyLink> */}
             </div>
         </div>
     );

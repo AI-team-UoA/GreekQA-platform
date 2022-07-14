@@ -11,7 +11,6 @@ import { GetStartedPage } from 'pages/Dashboard/GetStartedPage';
 import { ContributePage } from 'pages/ContributePage';
 import { GuidelinesPage } from 'pages/Dashboard/GuidelinesPage';
 import { ProfilePage } from 'pages/Dashboard/ProfilePage';
-// import { StatisticsPage } from 'pages/Dashboard/StatisticsPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { LoadingPage } from 'pages/LoadingPage';
 
@@ -24,60 +23,53 @@ function App() {
               <Routes>
                 <Route exact path="/login"
                   element={
-                    <RequireNotAuth redirectAuth="/dashboard/get-started">
+                    <RequireNotAuth redirectAuth="/get-started">
                       <LoginPage />
                     </RequireNotAuth>
                   }
                 />
                 <Route exact path="/signup"
                   element={
-                    <RequireNotAuth redirectAuth="/dashboard/get-started">
+                    <RequireNotAuth redirectAuth="/get-started">
                       <SignupPage />
                     </RequireNotAuth>
                   }
                 />
                 <Route exact path="/forgot-password"
                   element={
-                    <RequireNotAuth redirectAuth="/dashboard/get-started">
+                    <RequireNotAuth redirectAuth="/get-started">
                       <ForgotPasswordPage />
                     </RequireNotAuth>
                   }
                 />
                 <Route exact path="/verify-email"
                   element={
-                    <RequireAuthNotVerified redirectNotAuth="/login" redirectVerified="/dashboard/get-started">
+                    <RequireAuthNotVerified redirectNotAuth="/login" redirectVerified="/get-started">
                       <VerifyEmailPage />
                     </RequireAuthNotVerified>
                   }
                 />
-                <Route exact path="/dashboard/get-started"
+                <Route exact path="/get-started"
                   element={
                     <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <GetStartedPage />
                     </RequireAuthVerified>
                   }
                 />
-                <Route exact path="/dashboard/guidelines"
+                <Route exact path="/guidelines"
                   element={
                     <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <GuidelinesPage />
                     </RequireAuthVerified>
                   }
                 />
-                <Route exact path="/account/profile"
+                <Route exact path="/account"
                   element={
                     <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
                       <ProfilePage />
                     </RequireAuthVerified>
                   }
                 />
-                {/* <Route exact path="/dashboard/statistics"
-                  element={
-                    <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
-                      <StatisticsPage />
-                    </RequireAuthVerified>
-                  }
-                /> */}
                 <Route exact path="/contribute"
                   element={
                     <RequireAuthVerified redirectNotAuth="/login" redirectNotVerified="/verify-email">
@@ -87,15 +79,7 @@ function App() {
                 />
                 <Route
                   path="/"
-                  element={<Navigate to="/dashboard/get-started" />}
-                />
-                <Route
-                  path="/dashboard/*"
-                  element={<Navigate to="/dashboard/get-started" />}
-                />
-                <Route
-                  path="/account/*"
-                  element={<Navigate to="/account/profile" />}
+                  element={<Navigate to="/get-started" />}
                 />
                 <Route
                   path="*"
