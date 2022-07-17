@@ -55,12 +55,12 @@ export function Profile() {
             <div className="p-6 max-w-3xl space-y-6 shadow-lg rounded-lg">
                 <h3 className="mb-6 text-xl font-medium text-navy-600 select-none">Τα στατιστικά μου</h3>
                 {document ? (
-                <ul className="grid grid-cols-1 gap-5">
+                <ul className="grid grid-cols-1 gap-5 text-sm sm:text-base">
                     <li>
                         Έχετε συμπληρώσει <span className="font-medium text-navy-600">{document.user.numParagraphs}</span> παραγράφους.
                     </li>
                     <li>
-                        Έχετε γράψει <span className="font-medium text-navy-600">{document.user.numParagraphs}</span> ερωτοαπαντήσεις από τον χρήστη (<span className="font-medium text-navy-600">{+(((document.user.numQas / document.user.numParagraphs)).toFixed(2)) || 0}</span> ερωτοαπαντήσεις ανά παράγραφο).
+                        Έχετε γράψει <span className="font-medium text-navy-600">{document.user.numQas}</span> ερωτοαπαντήσεις (<span className="font-medium text-navy-600">{+(((document.user.numQas / document.user.numParagraphs)).toFixed(2)) || 0}</span> ερωτοαπαντήσεις ανά παράγραφο).
                     </li>
                 </ul>) : null}
             </div>
@@ -97,7 +97,7 @@ export function Profile() {
                                                                                         value: /^(?=.*[A-Za-zΑ-Ωα-ω])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
                                                                                 }})}
                 />
-                <Input label="Επιβεβαίωση νέου συνθηματικού" id="passwordConfirm" name="passwordConfirm" type="password" autoComplete="new-password" placeholder="Τo νέο συνθηματικό σας ξανά"
+                <Input label="Επιβεβαίωση νέου συνθηματικού" id="passwordConfirm" name="passwordConfirm" type="password" autoComplete="new-password" placeholder="Ξανά το νέο συνθηματικό σας"
                         passwordShown={verifyPasswordShown} togglePasswordVisibility={toggleVerifyPasswordVisibility}
                         errors={errorsPassword.passwordConfirm} register={registerPassword("passwordConfirm", { required: "Παρακαλώ συμπληρώστε ξανά το νέο συνθηματικό σας",
                                                                                                                 validate: (value) => value === watchPassword('password') || "Τα συνθηματικά δεν ταιριάζουν"

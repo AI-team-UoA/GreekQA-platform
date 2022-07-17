@@ -1,4 +1,4 @@
-export function AuthLayout({ form, illustration }) {
+export function AuthLayout({ size, form, illustration }) {
     return (
         <div className="flex min-h-screen overflow-hidden">
             <div className="
@@ -15,7 +15,7 @@ export function AuthLayout({ form, illustration }) {
                 md:rounded-lg
                 md:shadow-lg
             ">
-                <div className="w-full max-w-xl mx-auto 2xl:w-96">
+                <div className="w-full max-w-2xl mx-auto">
                     {form}
                 </div>
             </div>

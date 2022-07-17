@@ -21,7 +21,7 @@ export function LoginForm() {
 
     return (
         <div>
-            <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Είσοδος στο GreekQA</h1>
+            <h1 className="mt-6 text-2xl sm:text-3xl font-bold text-navy-400 select-none">Είσοδος στο GreekQA</h1>
             <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*uoa.gr)"
@@ -38,7 +38,7 @@ export function LoginForm() {
                     />
                     <div className="flex items-center justify-between">
                         <Input label="Να με θυμάσαι" id="remember" name="remember" type="checkbox" defaultChecked={true} register={register("remember")}/>
-                        <NavyLink className="text-sm" to="/forgot-password">Έχω ξεχάσει το συνθηματικό μου</NavyLink>
+                        <NavyLink className="text-sm text-right" to="/forgot-password">Έχω ξεχάσει το συνθηματικό μου</NavyLink>
                     </div>
                     <Button type="submit" onClick={setPasswordNotShown}>{isPending ? 'Είσοδος...' : 'Είσοδος'}</Button>
                     {error && <div className="text-red-500 text-sm">{error}</div>}
@@ -47,12 +47,12 @@ export function LoginForm() {
                     <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-navy-300" />
                     </div>
-                    <div className="relative flex justify-center text-sm">
+                    <div className="relative flex justify-center">
                         <span className="px-2 bg-white text-navy-900 select-none">Νέος χρήστης;</span>
                     </div>
                 </div>
                 <div className="relative flex justify-center">
-                    <NavyLink className="text-sm" to="/signup">Εγγραφή στην εφαρμογή (μόνο με email του ΕΚΠΑ)</NavyLink>
+                    <NavyLink className="text-center" to="/signup">Εγγραφή στην εφαρμογή (μόνο με email του ΕΚΠΑ)</NavyLink>
                 </div>
             </div>
         </div>

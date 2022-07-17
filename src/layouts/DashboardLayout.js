@@ -7,11 +7,11 @@ export function DashboardLayout({ title, content }) {
             <div className="hidden md:flex">
                 <Sidebar  />
                 </div>
-            <div className="md:hidden">
+            <div className="sticky md:hidden">
                 <MobileSidebar />
             </div>
-            <main className="relative flex-1 overflow-y-auto w-full px-12 pt-12 p-2">
-                <h2 className="mb-6 text-3xl font-medium text-navy-600 select-none">{title}</h2>
+            <main className="relative flex-1 overflow-y-auto w-full px-6 pt-12">
+                <h2 className="mb-6 text-2xl sm:text-3xl font-medium text-navy-600 select-none">{title}</h2>
                 {content}
             </main>
         </div>

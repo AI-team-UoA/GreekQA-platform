@@ -13,6 +13,7 @@ import { GuidelinesPage } from 'pages/Dashboard/GuidelinesPage';
 import { ProfilePage } from 'pages/Dashboard/ProfilePage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { LoadingPage } from 'pages/LoadingPage';
+import { LandingPage } from 'pages/Auth/LandingPage';
 
 function App() {
 
@@ -21,6 +22,13 @@ function App() {
       <RequireAuthIsReady loading={<LoadingPage/>}>
         <Router>
               <Routes>
+                <Route exact path="/"
+                  element={
+                    <RequireNotAuth redirectAuth="/get-started">
+                      <LandingPage />
+                    </RequireNotAuth>
+                  }
+                />
                 <Route exact path="/login"
                   element={
                     <RequireNotAuth redirectAuth="/get-started">

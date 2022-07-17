@@ -28,7 +28,7 @@ export function Button(props) {
     }
     else {
         return (
-            <button {...props} onClick={props.onClick} className={`text-sm text-navy-400 hover:underline hover:text-gray-600 ${props.className}`}>
+            <button {...props} onClick={props.onClick} className={`text-navy-400 hover:underline hover:text-gray-600 ${props.className}`}>
                 {props.children}
             </button>
         );

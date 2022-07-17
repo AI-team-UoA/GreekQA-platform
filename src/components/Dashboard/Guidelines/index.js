@@ -11,7 +11,7 @@ export function Guidelines() {
             <Disclosure key={index} as="div" className="mt-2" defaultOpen={item.open}>
             {({ open }) => (
                 <>
-                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-md font-medium text-left text-navy-900 bg-navy-50 rounded-lg shadow-md hover:bg-navy-100 focus:outline-none focus-visible:ring focus-visible:ring-navy-400 focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex justify-between w-full px-4 py-2 font-medium text-left text-navy-900 text-sm sm:text-base bg-navy-50 rounded-lg shadow-md hover:bg-navy-100 focus:outline-none focus-visible:ring focus-visible:ring-navy-400 focus-visible:ring-opacity-75">
                     {item.question}
                     <ChevronUpIcon
                     className={`${

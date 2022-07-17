@@ -10,18 +10,17 @@ export function VerifyEmailForm() {
 
     return (
         <div>
-            <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Επιβεβαίωση διεύθυνσης email</h1>
+            <h1 className="mt-6 text-2xl sm:text-3xl font-bold text-navy-400 select-none">Επιβεβαίωση διεύθυνσης email</h1>
             <div className="mt-8">
                 <form onSubmit={() => verifyEmail()} className="space-y-6">
-                    <p className="text-navy-700">
-                        Σας έχουμε στείλει ένα email για να <b>επιβεβαιώσετε</b> την διεύθυνση email σας.
-                        <br/><br/>
-                        H αποστολή του email <b>μπορεί να καθυστερήσει</b> μερικά λεπτά (συνήθως αποστέλλεται άμεσα).
-                        <br/><br/>
-                        <b>Αφού επιβεβαιώσετε</b> τον λογαριασμό σας, παρακαλώ <b>ανανεώστε</b> την παρούσα σελίδα.
-                        <br/><br/>
-                        Για <b>οποιοδήποτε πρόβλημα</b> επικοινωνήστε μαζί μας στη διεύθυνση <NavyLink a="true" href="mailto:greekqa.di.uoa@gmail.com">greekqa.di.uoa@gmail.com</NavyLink>
-                    </p>
+                    <div className="text-navy-700 space-y-4">
+                        <p>
+                            Σας έχουμε στείλει ένα email για να <b>επιβεβαιώσετε</b> την διεύθυνση email σας. H αποστολή του email <b>μπορεί να καθυστερήσει</b> μερικά λεπτά (συνήθως αποστέλλεται άμεσα).
+                        </p>
+                        <p>
+                        <b>Αφού επιβεβαιώσετε</b> τον λογαριασμό σας, παρακαλώ <b>ανανεώστε</b> την παρούσα σελίδα. Για οποιοδήποτε πρόβλημα επικοινωνήστε μαζί μας στο <NavyLink className="font-bold" a="true" href="mailto:greekqa.di.uoa@gmail.com">greekqa.di.uoa@gmail.com</NavyLink>
+                        </p>
+                    </div>
                     <Button disabled="true" type="submit">{isPendingVerifyEmail ? 'Επαναποστολή email...' : 'Επαναποστολή email'}</Button>
                 </form>
                 {errorVerifyEmail && <div className="text-red-500 text-sm">{errorVerifyEmail}</div>}
@@ -29,7 +28,7 @@ export function VerifyEmailForm() {
                     <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-navy-300" />
                     </div>
-                    <div className="relative flex justify-center text-sm">
+                    <div className="relative flex justify-center">
                         <span className="px-2 bg-white text-navy-900 select-none">Θέλετε να αποσυνδεθείτε;</span>
                     </div>
                 </div>

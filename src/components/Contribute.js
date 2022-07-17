@@ -8,7 +8,6 @@ import { useAuthContext } from 'hooks/useAuthContext';
 import { useFirestoreParagraphs } from 'hooks/useFirestoreParagraphs';
 
 import { NavyLink } from 'components/Shared/NavyLink';
-import { Link } from 'react-router-dom';
 import { Input } from 'components/Shared/Input';
 import { Button } from 'components/Shared/Button';
 
@@ -64,16 +63,16 @@ export function Contribute() {
     };
 
     return (
-        <div className="space-y-6">
-            <h2 className="mb-6 text-3xl font-medium text-navy-600 select-none">
+        <div className="space-y-5">
+            <h2 className="mb-6 text-2xl sm:text-3xl font-medium text-navy-600 select-none">
                 Συγγραφή ερωτήσεων/απαντήσεων
             </h2>
             <div className="p-6 rounded-lg shadow-lg">
                 <h3 className="mb-6 text-xl">
-                    <span className="font-medium select-none">Τίτλος Άρθρου: </span>{document != null ? document.title : 'Φόρτωση...'}
+                    <span className="font-medium text-lg sm:text-xl select-none">Τίτλος Άρθρου:</span> <span className="text-lg sm:text-xl select-none">{document != null ? document.title : 'Φόρτωση...'}</span>
                 </h3>
-                <p className="text-md text-left" onMouseUp={() => {setSelectedText(window.getSelection().toString()); setSelectionRange(window.getSelection().getRangeAt(0))}} onTouchEnd={() => setSelectedText(window.getSelection().toString())}>
-                    <span className="font-medium text-xl select-none">Παράγραφος:</span><br />
+                <p className="text-left text-sm sm:text-base" onMouseUp={() => {setSelectedText(window.getSelection().toString()); setSelectionRange(window.getSelection().getRangeAt(0))}} onContextMenu={() => {setSelectedText(window.getSelection().toString()); setSelectionRange(window.getSelection().getRangeAt(0))}}>
+                    <span className="font-medium text-lg sm:text-xl select-none">Παράγραφος:</span><br />
                     {document != null ? document.paragraph.context : 'Φόρτωση...'}
                 </p>
             </div>
@@ -82,7 +81,7 @@ export function Contribute() {
                     <Disclosure key={index} as="div" className="my-2 pt-2">
                     {({ open }) => (
                         <>
-                        <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-md font-medium text-left text-navy-900 bg-navy-50 rounded-lg shadow-md hover:bg-navy-100 focus:outline-none focus-visible:ring focus-visible:ring-navy-400 focus-visible:ring-opacity-75">
+                        <Disclosure.Button className="flex justify-between w-full px-4 py-2 font-medium text-left text-navy-900 bg-navy-50 rounded-lg shadow-md hover:bg-navy-100 focus:outline-none focus-visible:ring focus-visible:ring-navy-400 focus-visible:ring-opacity-75">
                             {`Ερώτηση/Aπάντηση ${index+1}`}
                             <ChevronUpIcon
                             className={`${
@@ -102,26 +101,31 @@ export function Contribute() {
             </div>
             <form onSubmit={handleSubmitQA(onSubmitQA)} className="space-y-4">
                 <Input label="Νέα ερώτηση" id="question" name="question" type="text" placeholder="Γράψτε την ερώτηση" autocomplete="off"
-                       errors={errorsQA.question}  register={registerQA("question", {    required: "Παρακαλώ συμπληρώστε μια ερώτηση",
+                       errors={errorsQA.question}  register={registerQA("question", { required: "Παρακαλώ συμπληρώστε μια ερώτηση",
                                                                                     pattern: {
-                                                                                    message: "Παρακαλώ συμπληρώστε μια ερώτηση στα ελληνικά που να τελειώνει με ερωτηματικό (π.χ. Πόσο χρονών είναι ο Πρίγκιπας Κάρολος;)",
-                                                                                    value: /^[Α-Ωα-ωA-Za-zΆΈΊΌΎΏΪΫΏάέήίόύώϊϋΰψΐζήθόςώϊΐΰΆΈΉΊΌΎΏΪΫΏάέήίόύώϊϋΰψΐζήθόςώϊΐΰ0-9\s]+;$/
+                                                                                    message: "Παρακαλώ συμπληρώστε μια ερώτηση στα ελληνικά που να τελειώνει με ερωτηματικό (π.χ. Πόση ειναι η διάμετρος της Γης;",
+                                                                                    value: /^[Α-Ωα-ωA-Za-zΆΈΊΌΎΏΪΫΏάέήίόύώϊϋΰψΐζήθόςώϊΐΰΆΈΉΊΌΎΏΪΫΏάέήίόύώϊϋΰψΐζήθόςώϊΐΰ0-9'":!@#$%^&*()-_+=\s]+;$/
                                                                                 }
                                                                             })}
                 />
                 <Input label="Νέα απάντηση" id="answer" name="answer" type="text" placeholder="Μάρκαρετε την απάντηση στην παράγραφο" value={selectedText} readOnly
-                       errors={errorsQA.answer} register={registerQA("answer", )}
+                       errors={errorsQA.answer} register={registerQA("answer", { required: "Παρακαλώ συμπληρώστε μια απάντηση (π.χ. 12.742 χλμ.)"})}
                 />
             
                 <Button green="true" type="submit" disabled={document ? (document.paragraph.qas.length >= 5 ? true: false): false}>Προσθήκη Ερώτησης {document ? (document.paragraph.qas.length >= 5 ? "(Μπορείτε να καταχωρήσετε το πολύ 5 ερωτήσεις/απαντήσεις ανά παράγραφο!)" : ""): ""}</Button>
             </form>
+            <div>
+                <b className="text-red-500">Προσοχή: </b>
+                <ul className="pl-5 list-disc">
+                    <li>Η απάντηση πρέπει να είναι <b className="text-navy-500">το μικρότερο δυνατό μέρος του κειμένου (φράση ή λέξη) που απαντά στην εκάστοτε ερώτηση</b> και <b className="text-navy-500">όχι ολόκληρη πρόταση</b>. Περισσότερες λεπτομέρειες στις Οδηγίες Χρήσης παρακάτω.</li>
+                    <li>Σε κάθε παράγραφο μπορείτε να γράψετε <b className="text-navy-500">3-5 ερωτήσεις/απαντήσεις</b>.</li>
+                    <li>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b className="text-navy-500">βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.</li>
+                    <li>Πριν αποχωρήσετε από την σελίδα, παρακαλούμε <b className="text-navy-500">καταχωρήστε τις ερωτήσεις/απαντήσεις σας</b>, διότι δεν αποθηκεύονται προσωρινά.</li>
+                </ul>
+            </div>
             <Button type="submit" onClick={()=> submitQAs(document, user.uid)} disabled={document ? (document.paragraph.qas.length >= 3 ? false: true): true}>Καταχώρηση όλων των ερωτήσεων/απαντήσεων {document ? (document.paragraph.qas.length >= 3 ? "" : "(Χρειάζεστε τουλάχιστον 3 ερωτήσεις/απαντήσεις ανά παράγραφο!)"): "(Χρειάζεστε τουλάχιστον 3 ερωτήσεις/απαντήσεις ανά παράγραφο!)"}</Button>
             <div>
-                <b className="text-red-500">Προσοχή: </b>Πριν καταχωρήσετε τις ερωτήσεις/απαντήσεις σας, παρακαλούμε <b>βεβαιωθείτε ότι είναι σωστές</b>, διότι δεν μπορούν να αλλαχθούν στην συνέχεια.
-            </div>
-            <div>
-                <Link to="/get-started" className="px-4 py-2 bg-navy-400 text-white font-medium rounded-lg transition duration-200 ease-in-out select-none hover:bg-navy-600">Επιστροφή στην εφαρμογή</Link>
-                {/* <NavyLink className="text-lg font-semibold" to="/get-started">Επιστροφή στην εφαρμογή</NavyLink> */}
+                <NavyLink to="/get-started">Επιστροφή στην εφαρμογή</NavyLink>
             </div>
         </div>
     );

@@ -4,22 +4,25 @@ export function Input(props) {
     switch (props.type) {
         case 'password':
             return (
-                <div className="relative">
-                    <div className="absolute inset-y-13 right-4 flex items-center pl-2">
-                        {props.passwordShown ? 
-                            <EyeIcon className="h-6 text-navy-600" onClick={props.togglePasswordVisibility} /> :
-                            <EyeOffIcon className="h-6 text-gray-600" onClick={props.togglePasswordVisibility} />
-                        }
+                <div>
+                    <div className="relative">
+                        <label htmlFor={props.id} className="block font-medium text-navy-600">{props.label}</label>
+                        <input id={props.id} name={props.name} type={props.passwordShown ? "text" : "password"} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly}
+                            className={`block w-full mt-1 px-5 py-3 text-sm sm:text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
+                                        transition duration-300 ease-in-out border-transparent 
+                                        focus:border-transparent focus:ring-white focus:ring-offset-2
+                                        ${props.errors ? "border-red-500 focus:ring-offset-red-500" : "focus:ring-offset-navy-400"}`}
+                            {...props.register}
+                        />
+                        <div className="absolute inset-y-13 right-4 flex items-center pl-2">
+                            {props.passwordShown ? 
+                                <EyeIcon className="h-6 text-navy-600" onClick={props.togglePasswordVisibility} /> :
+                                <EyeOffIcon className="h-6 text-gray-600" onClick={props.togglePasswordVisibility} />
+                            }
+                        </div>
+                        
                     </div>
-                    <label htmlFor={props.id} className="block text-md font-medium text-navy-600">{props.label}</label>
-                    <input id={props.id} name={props.name} type={props.passwordShown ? "text" : "password"} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly}
-                        className={`block w-full mt-1 px-5 py-3 text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
-                                    transition duration-300 ease-in-out border-transparent 
-                                    focus:border-transparent focus:ring-white focus:ring-offset-2 
-                                    ${props.errors ? "border-red-500 focus:ring-offset-red-500" : "focus:ring-offset-navy-400"}`}
-                        {...props.register}
-                    />
-                    <span className="text-red-400 font-medium">{props.errors?.message}</span>
+                    <span className="text-red-400 font-medium text-sm sm:text-base">{props.errors?.message}</span>
                 </div>
             );
         
@@ -39,15 +42,17 @@ export function Input(props) {
         default:
             return (
                 <div>
-                    <label htmlFor={props.id} className="block text-md font-medium text-navy-600">{props.label}</label>
-                    <input id={props.id} name={props.name} type={props.type} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly}
-                        className={`block w-full mt-1 px-5 py-3 text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
-                                    transition duration-300 ease-in-out border-transparent 
-                                    focus:border-transparent focus:ring-white focus:ring-offset-2 
-                                    disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:ring-offset-0
-                                    ${props.errors ? "border-red-500 focus:ring-offset-red-500" : "focus:ring-offset-navy-400"}`}
-                    {...props.register}/>
-                    <span className="text-red-400 font-medium">{props.errors?.message}</span>
+                    <div>
+                        <label htmlFor={props.id} className="block font-medium text-navy-600">{props.label}</label>
+                        <input id={props.id} name={props.name} type={props.type} autoComplete={props.autoComplete} placeholder={props.placeholder} value={props.value} defaultValue={props.defaultValue} onChange={props.onChange} disabled={props.disabled} readOnly={props.readOnly}
+                            className={`block w-full mt-1 px-5 py-3 text-sm sm:text-base placeholder-gray-300 text-neutral-600 rounded-lg bg-gray-50
+                                        transition duration-300 ease-in-out border-transparent 
+                                        focus:border-transparent focus:ring-white focus:ring-offset-2 
+                                        disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:ring-offset-0
+                                        ${props.errors ? "border-red-500 focus:ring-offset-red-500" : "focus:ring-offset-navy-400"}`}
+                        {...props.register}/>
+                    </div>
+                    <span className="text-red-400 font-medium text-sm sm:text-base">{props.errors?.message}</span>
                 </div>
             );
     }

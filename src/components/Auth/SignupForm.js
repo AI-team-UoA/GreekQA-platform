@@ -26,21 +26,21 @@ export function SignupForm() {
 
     return (
         <div>
-            <h1 className="mt-6 text-3xl font-bold text-navy-400 select-none">Εγγραφή στο GreekQA</h1>
+            <h1 className="mt-6 text-2xl sm:text-3xl font-bold text-navy-400 select-none">Εγγραφή στο GreekQA</h1>
             <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <Input label="Όνομα" id="firstname" name="firstname" type="text" autoComplete="given-name" placeholder="Το όνομά σας (π.χ. ΙΩΑΝΝΗΣ)"
                         errors={errors.firstname} register={register("firstname", { required: "Παρακαλώ συμπληρώστε το όνομά σας",
                                                                                     pattern: {
                                                                                         message: "Παρακαλώ συμπληρώστε το όνομα σας χωρίς κενά (διπλά ονόματα με παύλα)",
-                                                                                        value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ]+$/
+                                                                                        value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ-]+$/
                                                                                   }})}
                     />
                     <Input label="Επώνυμο" id="lastname" name="lastname" type="text" autoComplete="family-name" placeholder="Το επώνυμό σας (π.χ. ΠΑΠΑΔΟΠΟΥΛΟΣ)"
                         errors={errors.lastname} register={register("lastname", {   required: "Παρακαλώ συμπληρώστε το επώνυμό σας",
                                                                                     pattern: {
                                                                                         message: "Παρακαλώ συμπληρώστε το επώνυμό σας χωρίς κενά (διπλά επώνυμα με παύλα)",
-                                                                                        value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ]+$/
+                                                                                        value: /^[a-zA-Zα-ωΑ-ΩΆΈΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰΆΈΉΊΌΎΏΫΏΪΫΏΩΏάέήίόύώϊϋϊϋΐΰ-]+$/
                                                                                 }})}
                     />
                     <Input label="Διεύθυνση email" id="email" name="email" type="email" autoComplete="email" placeholder="To email σας (*uoa.gr)"
@@ -68,12 +68,12 @@ export function SignupForm() {
                     <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-navy-400" />
                     </div>
-                    <div className="relative flex justify-center text-sm">
+                    <div className="relative flex justify-center">
                         <span className="px-2 bg-white text-gray-700 select-none">Έχετε ήδη λογαριασμό;</span>
                     </div>
                 </div>
                 <div className="relative flex justify-center">
-                    <NavyLink className="text-sm" to="/login">Είσοδος στην εφαρμογή (μόνο με email του ΕΚΠΑ)</NavyLink>
+                    <NavyLink className="text-center" to="/login">Είσοδος στην εφαρμογή (μόνο με email του ΕΚΠΑ)</NavyLink>
                 </div>
             </div>
         </div>
