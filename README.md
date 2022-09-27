@@ -55,6 +55,3 @@ The build is minified and the filenames include the hashes. \
 The app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## License
-This project is available under [the MIT License](https://github.com/ssiatras/crowdsourcing-platform/blob/main/LICENSE).
