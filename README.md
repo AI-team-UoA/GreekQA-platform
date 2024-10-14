@@ -1,7 +1,6 @@
 # GreekQA Crowdsourcing Platform
 
 ## Tech Stack
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 - React.js v17,
 - Tailwindcss v3,
 - Firebase v9 (Authentication, Firestore).
